@@ -41,7 +41,7 @@
 }
 
 #process{
-	width: 900px;
+	width: 830px;
 	height : 150px;
 	background-color: #FFFFFF;
 	margin-top: 20px;
@@ -51,20 +51,50 @@
 	box-shadow: -1px 1px 2px #aaa;
 }
 
+#process ul{ 
+	display: block;
+	list-style-type: disc;
+	margin-block-start: 2em;
+	margin-block-end: 2em;
+	margin-inline-start: 2px;
+	margin-inline-end: 2px;
+	padding-inline-start: 20px;
+}
+
 #process ul li{
-	width: 136px;
+	width: 130px;
 	height: 128px;
-	text-align: center;
 	display: table-cell;
 }
 
+
+
 #process ul li a span img{
+	border-radius : 70%;
+	width: 60px;
+	height: 58px;
 	background-color: #d5dcc0;
+	margin-top : 25px;
 }
 
 #process ul li a span .active{
 	background-color: #f2114c;
 }
+
+
+#process ul li.prog span.do{
+	width: 8px;
+	height: 8px;
+	border-radius : 50%;
+	background-color: #d5dce0;
+	margin-right: 4px;
+	display: inline-block;
+}
+
+#process ul li .do{
+	background-color: #d5dcc0;
+}
+
 
 #process ul li a span:last-of-type{
 	width : 136px;
@@ -90,14 +120,14 @@
 }
 
 #roomsalary{
-	width: 340px;
+	width: 380px;
 	height: 160px;
 	background-color: #546e7a;
 	float: left;
 	border-radius : 5px;
 	box-shadow : -1px 1px 2px #aaa;
 	font-size : 10px;
-	margin-right : 150px;	
+	margin-right : 70px;	
 }
 
 #roomsalary a span:first-of-type{
@@ -150,7 +180,7 @@
 }
 
 #reviews{
-	width: 340px;
+	width: 380px;
 	height: 160px;
 	background-color: #00bfa5;
 	float: right;
@@ -221,9 +251,9 @@
 }
 
 #notice-header span:first-of-type{
-	width: 57px;
+	width: 70px;
 	height: 16px;
-	font-size: 16px;
+	font-size: 20px;
 	font-weight: 600;
 	line-height : 1;
 	letter-spacing : -0.5px;
@@ -231,7 +261,7 @@
 	display: inline-block;
 	margin-top: 24px;
 	margin-bottom: 18px;
-	margin-left: 24px;
+	margin-left: 20px;
 	float : left;
 }
 
