@@ -1,0 +1,54 @@
+@charset "UTF-8";
+
+html{
+	-webkit-text-size-adjust: 100%;
+}
+
+body{
+	-webkit-font-smoothing: antialiased;
+}
+
+#mypageForm{
+	width: 830px;
+	height : 150px;
+	background-color: #FFFFFF;
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius : 5px;
+	box-shadow: -1px 1px 2px #aaa;
+}
+
+#mypageForm table{
+	display: inline-block;
+	max-width : 100%;
+	margin-top: 24px;
+	margin-left: 24px;
+	margin-right: 24px;
+	margin-bottom: 20px;
+	background-color: #fff;
+	border-collapse: collapse;
+	border-spacing: 0;
+	border: 0;
+}
+
+#mypageForm table tbody tr th{
+	width: 136px;
+	background-color: #eaeaea;
+	text-align: center;
+	font-size: 1.2em;
+	font-weight: 500;
+	line-height: 1.57;
+	color: #000000;
+	min-height: 10px;
+	vertical-align: middle;
+	letter-spacing: -1px;
+	padding: 0 !important;
+}
+
+
+#mypageForm table tbody tr td{
+	width: auto;
+	display: table;
+	margin-bottom: 12px;
+}
