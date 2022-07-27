@@ -112,13 +112,13 @@ a:active {
 	margin: auto;
 }
 
-#header>h1 a {
+#header>#section h1 a {
 	float: left;
 	color: #FFFFFF;
 	font-size: 35px;
 	font-weight: bold;
 	padding-top : 5px;
-	margin-left: 215px;
+	margin-left: 95px;
 	font-family: 'TTCrownMychewR';
 	
 }
@@ -219,6 +219,7 @@ footer .link li:last-child {
 	margin-bottom: 0;
 }
 
+
 footer .link li span {
 	display: inline-block;
 	position: relative;
@@ -247,4 +248,14 @@ footer address {
 address, caption, em, var {
 	font-style: normal;
 	font-weight: normal;
+}
+
+
+
+#container{
+	clear : both;
+	min-width : 1024px;
+	padding-left : 10px;
+	padding-right : 10px;
+	text-align : center;
 }
