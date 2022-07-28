@@ -170,7 +170,7 @@ footer {
 	overflow: hidden;
 	clear: both;
 	position: relative;
-	margin-top: 120px;
+	margin-top: 60px;
 	padding: 63px 31px 40px 31px !important;
 	border-top: 1px solid rgba(0, 0, 0, 0.08);
 	background: #252525;
@@ -182,7 +182,7 @@ footer {
 
 footer .align {
 	width: 1024px;
-	padding-top : 100px;
+	padding-top : 60px;
 	margin: 0 auto;
 }
 
