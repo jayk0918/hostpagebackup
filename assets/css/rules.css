@@ -279,7 +279,20 @@ hr{
 }
 
 #rules{
-	width: 600px;
+	width: 650px;
 	margin-left: 15px;
 	margin-bottom: 10px;
+}
+
+#rateguide{
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.order{
+	margin-left: 30px;
+}
+
+.form-horizontal > div > ul > li{
+	font-weight: bold;
 }

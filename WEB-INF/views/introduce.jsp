@@ -8,8 +8,8 @@
 <title>소개 작성(필수)</title>
 </head>
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/assets/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.js"></script>
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/hostHeaderFooter.css">
@@ -17,71 +17,17 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/introduce.css">
 
 <body>
-	<!-- 펜션어때 헤더 -->
-
-	<div id="wrap">
-		<div id="header" class="clearfix">
-			<div id="section">
-				<h1>
-					<a href="">양도어때HOST</a>
-				</h1>
-				<ul class="clearfix">
-					<li><a href="${pageContext.request.contextPath}/host/mypagereg"><img src="${pageContext.request.contextPath}/assets/img/mypageIcon.png"> 마이페이지</a></li>
-					<li><a href=""><img src="${pageContext.request.contextPath}/assets/img/logout.png"> 로그아웃</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<!-- 펜션어때 헤더 -->
-
-	<!-- nav -->
-	<div id = "nav" class = "center-block">
-	<ul>
-		<li><a href="">예약관리</a>
-			<!-- 
-			<ul id = "onHover">
-				<li><a href="">예약내역</a></li>
-				<li><a href="">정산 및 매출내역</a></li>
-				<li><a href="">리뷰관리</a></li>
-			</ul>
-			 -->
-		</li>
-		<li><a href="">객실관리</a></li>
-		<li><a href="">숙소관리</a>
-			<!--  
-			<ul id = "onHover">
-				<li><a href="">소개작성</a></li>
-				<li><a href="">이용규칙관리</a></li>
-			</ul>
-			-->
-		</li>
-		<li><a href="">고객센터</a>
-			<!-- 
-			<ul id = "onHover">
-				<li><a href = "">공지사항</a></li>
-				<li><a href = "">자주묻는질문</a></li>
-				<li><a href = "">서비스 약관</a></li>
-			</ul>
-			 -->
-		</li>
-	</ul>
-</div>
-<!-- nav -->
-
+	<!-- header -->
+	<c:import url="/WEB-INF/views/includes/header(host).jsp"></c:import>
+	<!-- header -->
 
 <div id = "container">
-	
-	<div id = "register">
-		<p>아래의 정보를 모두 입력하고 숙소 등록을 완료하세요.</p>
-		<br>
-		<a href=""><span>업체 정보 등록 ></span></a>
-	</div>
 	
 	<div id = "process" class = "center-block">
 		<ul>
 			<li class = "imgs">
-				<a href="">
-					<span><img src="${pageContext.request.contextPath}/assets/img/mypage.png" class = "active"></span>
+				<a href="${pageContext.request.contextPath}/host/mypagereg">
+					<span><img src="${pageContext.request.contextPath}/assets/img/mypage.png"></span>
 					<span>마이페이지 입력</span>
 				</a>
 			</li>
@@ -95,10 +41,12 @@
 				<span>&nbsp;</span>
 				<span class = "do">&nbsp;</span>
 				<span>&nbsp;</span>
+				<span class = "do">&nbsp;</span>
+				<span>&nbsp;</span>
 			</li>
 			<li class = "imgs">
-				<a href="">
-					<span><img src="${pageContext.request.contextPath}/assets/img/introduce.png"></span>
+				<a href="${pageContext.request.contextPath}/host/introreg">
+					<span><img src="${pageContext.request.contextPath}/assets/img/introduce.png" class = "active"></span>
 					<span>소개작성</span>
 				</a>
 			</li>
@@ -112,9 +60,11 @@
 				<span>&nbsp;</span>
 				<span class = "do">&nbsp;</span>
 				<span>&nbsp;</span>
+				<span class = "do">&nbsp;</span>
+				<span>&nbsp;</span>
 			</li>
 			<li class = "imgs">
-				<a href="">
+				<a href="${pageContext.request.contextPath}/host/rules">
 					<span><img src="${pageContext.request.contextPath}/assets/img/rules.png"></span>
 					<span>이용규칙 관리</span>
 				</a>
@@ -129,9 +79,11 @@
 				<span>&nbsp;</span>
 				<span class = "do">&nbsp;</span>
 				<span>&nbsp;</span>
+				<span class = "do">&nbsp;</span>
+				<span>&nbsp;</span>
 			</li>
 			<li class = "imgs">
-				<a href="">
+				<a href="${pageContext.request.contextPath}/host/roomreg">
 					<span><img src="${pageContext.request.contextPath}/assets/img/room.png"></span>
 					<span>객실 관리</span>
 				</a>
@@ -143,18 +95,20 @@
 		<div id="content">
 			<div class="list-layer">
 				<form class="form-horizontal" id="intro-form" method="post" action="/guest/intro" name="intro" enctype="multipart/form-data">
-					<input type="hidden" name="ano" value="3309">
-					<input type="hidden" name="uno" value="18212587">
+					<input type="hidden" name="ano" value="">
+					<input type="hidden" name="uno" value="">
 					<input class="form-control normal-size" id="input_jibunAddress" type="hidden" name="jibun_address1">
 					
-					<div class="guest-title-layer mb_0 pb_0">
-					<ul>
-						<li class = "instruction">[소개 작성] 은 펜션전체를 소개하는 양식입니다. (사진, 오시는 길 등)</li>
-						<li class = "instruction">우측 물음표를 클릭하시면 웹에서 어떻게 표시되는지 확인이 가능합니다.</li>
-					</ul>
+					<div id = "design">
+						<div class="guest-title-layer mb_0 pb_0">
+							<ul>
+								<li class = "instruction">[소개 작성] 은 펜션전체를 소개하는 양식입니다. (사진, 오시는 길 등)</li>
+								<li class = "instruction">우측 물음표를 클릭하시면 웹에서 어떻게 표시되는지 확인이 가능합니다.</li>
+							</ul>
+						</div>
+						
+						<h3 class="guest-h3">[필수 기입 정보]</h3>
 					</div>
-					
-					<h3 class="guest-h3">[필수 기입 정보]</h3>
 					<table id="intro"class="table">
 						<thead></thead>
 						<tbody>
@@ -170,17 +124,21 @@
 									<div class="form-layer mb_24">
 										<span class="form-title">업체 주소</span>
 										<!-- BOD-1458 -->
-										<input type="hidden" name="dong_code" id="dong_code" value=""> <span class="form-body"> <input class="form-control normal-size" id="input_roadAddress" type="text"
-											name="address1" readonly="" placeholder="업체 주소를 입력하세요." value="">
+										<span class="form-body">
+											<input class="form-control normal-size" id="input_roadAddress" type="text" name="address1" readonly placeholder="업체 주소를 입력하세요." value="">
 											<button type="button" class="btn btn-yeogi btn-normal-layer" onclick="daumPostCode()">주소 검색</button>
 										</span>
 									</div>
 									<div class="form-layer newline mb_24">
-										<span class="form-body"> <input id="address"class="form-control normal-size" type="text" name="address2" placeholder="나머지 주소를 입력하세요." value="">
+										<span class="form-body">
+											<input id="address"class="form-control normal-size" type="text" name="address2" placeholder="나머지 주소를 입력하세요." value="">
 										</span>
 									</div>
 									<div class="form-layer-text">
-										( 법정동코드 : <span id="dong_code_text"> - </span> )
+										<input type="hidden" id = "delivername" value = "">
+										<div id = "legalname" class = "order">
+											<input type = "text" readonly value = "법정동 코드: "><input id = "lawcode" type="text" readonly value = ""><input id = "fullname" type="text" readonly value = "">
+										</div>
 									</div>
 								</td>
 								<td>
@@ -193,7 +151,7 @@
 
 							<!-- 업체 이미지 -->
 							<tr>
-								<th>업체<br>이미지<br>(최대<br>20장)
+								<th>업체 이미지<br>(최대 20장)
 								</th>
 								<td class="bd_r_none">
 									<div class="form-layer mb_15 text-left">
@@ -208,13 +166,11 @@
 											<li class="backgrou">
 												<input type="hidden" name="adino[]" value="235381">
 												<div>
-													<img data-adino="235381" src="${pageContext.request.contextPath}/assets/img/ㅋㅋ.jpg" class="img-rounded">
+													<img data-adino="235381" src="${pageContext.request.contextPath}/assets/img/logout.png" class="img-rounded">
 												</div>
 												<button data-role="img-changer" data-adino="235381" data-ano="3309" data-armgno="0" data-type="8" type="button" class="btn btn-xs btn-success">변경</button>
 												<button data-role="img-delete" data-adino="235381" type="button" class="btn btn-xs btn-deleete">삭제</button>
 											</li>
-											
-											
 										</ul>
 										
 									</div>
@@ -223,29 +179,30 @@
 										<button id = "addimage" type="button" class="btn btn-default btn_add" data-role="img-uploader" data-ano="3309" data-armno="0" data-type="8">+ 이미지 추가</button>
 									</div>
 								</td>
+								
 								<td class="help-tooltip popover-container"><a href="javascript:void(0)" data-toggle="popover"><img id="tooltip" src="${pageContext.request.contextPath}/assets/img/tooltip.png"></a>
 									<div class="hide">
 										<span><img src="${pageContext.request.contextPath}/assets/img/tooltip.png"></span>
-									</div></td>
+									</div>
+								</td>
 							</tr>
 							<!--// 업체 이미지 -->
 
 							<!-- 편의시설/서비스 안내 -->
 							<tr id="target_host">
-								<th>공용시설<br>서비스<br>안내
+								<th>공용시설<br>서비스 안내
 								</th>
 								<td class="bd_r_none">
 									<div class="form-layer align_chk">
-										<label for="theme90" class="checkbox-inline icon-label"> <input type="checkbox" id="theme90" name="ad_theme[]" value="90">수영장
-										</label> <label for="theme91" class="checkbox-inline icon-label"> <input type="checkbox" id="theme91" name="ad_theme[]" value="91">족구장
-										</label> <label for="theme92" class="checkbox-inline icon-label"> <input type="checkbox" id="theme92" name="ad_theme[]" value="92">카페
-										</label> <label for="theme95" class="checkbox-inline icon-label"> <input type="checkbox" id="theme95" name="ad_theme[]" value="93">노래방
-										</label> <label for="theme96" class="checkbox-inline icon-label"> <input type="checkbox" id="theme96" name="ad_theme[]" value="94">편의점
-										</label> <label for="theme98" class="checkbox-inline icon-label"> <input type="checkbox" id="theme98" name="ad_theme[]" value="95">주차장
-										</label> <label for="theme99" class="checkbox-inline icon-label"> <input type="checkbox" id="theme99" name="ad_theme[]" value="96">BBQ
-										</label> <label for="theme100" class="checkbox-inline icon-label"> <input type="checkbox" id="theme100" name="ad_theme[]" value="97">주방/식당
-										</label> <label for="theme103" class="checkbox-inline icon-label"> <input type="checkbox" id="theme103" name="ad_theme[]" value="98">흡연부스
-										</label>
+										<label for="theme0" class="checkbox-inline icon-label"> <input type="checkbox" id="theme0" name="ad_theme[]" value="0">수영장</label>
+										<label for="theme1" class="checkbox-inline icon-label"> <input type="checkbox" id="theme1" name="ad_theme[]" value="1">족구장</label>
+										<label for="theme2" class="checkbox-inline icon-label"> <input type="checkbox" id="theme2" name="ad_theme[]" value="2">카페</label>
+										<label for="theme3" class="checkbox-inline icon-label"> <input type="checkbox" id="theme3" name="ad_theme[]" value="3">노래방</label>
+										<label for="theme4" class="checkbox-inline icon-label"> <input type="checkbox" id="theme4" name="ad_theme[]" value="4">편의점</label>
+										<label for="theme5" class="checkbox-inline icon-label"> <input type="checkbox" id="theme5" name="ad_theme[]" value="5">주차장</label>
+										<label for="theme6" class="checkbox-inline icon-label"> <input type="checkbox" id="theme6" name="ad_theme[]" value="6">BBQ</label>
+										<label for="theme7" class="checkbox-inline icon-label"> <input type="checkbox" id="theme7" name="ad_theme[]" value="7">주방/식당</label>
+										<label for="theme8" class="checkbox-inline icon-label"> <input type="checkbox" id="theme8" name="ad_theme[]" value="8">흡연부스</label>
 									</div>
 								</td>
 								<td class="help-tooltip popover-container"><a href="javascript:void(0)" data-toggle="popover"><img id="tooltip" src="${pageContext.request.contextPath}/assets/img/tooltip.png"></a>
@@ -254,22 +211,21 @@
 									</div></td>
 							</tr>
 							<tr id="target_host1">
-								<th>편의시설<br>서비스<br>안내
+								<th>편의시설<br>서비스 안내
 								</th>
 								<td class="bd_r_none">
 									<div class="form-layer align_chk">
-										<label for="theme90" class="checkbox-inline icon-label"> <input type="checkbox" id="theme90" name="ad_theme[]" value="90">냉장고
-										</label> <label for="theme91" class="checkbox-inline icon-label"> <input type="checkbox" id="theme91" name="ad_theme[]" value="91">에어컨
-										</label> <label for="theme92" class="checkbox-inline icon-label"> <input type="checkbox" id="theme92" name="ad_theme[]" value="92">TV
-										</label> <label for="theme95" class="checkbox-inline icon-label"> <input type="checkbox" id="theme95" name="ad_theme[]" value="95">와이파이
-										</label> <label for="theme96" class="checkbox-inline icon-label"> <input type="checkbox" id="theme96" name="ad_theme[]" value="96">욕실용품
-										</label> <label for="theme99" class="checkbox-inline icon-label"> <input type="checkbox" id="theme99" name="ad_theme[]" value="99">세탁기
-										</label> <label for="theme103" class="checkbox-inline icon-label"> <input type="checkbox" id="theme103" name="ad_theme[]" value="103">드라이기
-										</label> <label for="theme106" class="checkbox-inline icon-label"> <input type="checkbox" id="theme106" name="ad_theme[]" value="106">욕조
-										</label> <label for="theme107" class="checkbox-inline icon-label"> <input type="checkbox" id="theme107" name="ad_theme[]" value="107">반려견동반
-										</label> <label for="theme108" class="checkbox-inline icon-label"> <input type="checkbox" id="theme107" name="ad_theme[]" value="107">객실 내 흡연
-										</label> <label for="theme171" class="checkbox-inline icon-label"> <input type="checkbox" id="theme171" name="ad_theme[]" value="171">취사가능
-										</label>
+										<label for="theme9" class="checkbox-inline icon-label"> <input type="checkbox" id="theme9" name="ad_theme[]" value="90">냉장고</label>
+										<label for="theme10" class="checkbox-inline icon-label"> <input type="checkbox" id="theme10" name="ad_theme[]" value="10">에어컨</label>
+										<label for="theme11" class="checkbox-inline icon-label"> <input type="checkbox" id="theme11" name="ad_theme[]" value="11">TV</label>
+										<label for="theme12" class="checkbox-inline icon-label"> <input type="checkbox" id="theme12" name="ad_theme[]" value="12">와이파이</label>
+										<label for="theme13" class="checkbox-inline icon-label"> <input type="checkbox" id="theme13" name="ad_theme[]" value="13">욕실용품</label>
+										<label for="theme14" class="checkbox-inline icon-label"> <input type="checkbox" id="theme14" name="ad_theme[]" value="14">세탁기</label>
+										<label for="theme15" class="checkbox-inline icon-label"> <input type="checkbox" id="theme15" name="ad_theme[]" value="15">드라이기</label>
+										<label for="theme16" class="checkbox-inline icon-label"> <input type="checkbox" id="theme16" name="ad_theme[]" value="16">욕조</label>
+										<label for="theme17" class="checkbox-inline icon-label"> <input type="checkbox" id="theme17" name="ad_theme[]" value="17">반려견동반</label>
+										<label for="theme18" class="checkbox-inline icon-label"> <input type="checkbox" id="theme18" name="ad_theme[]" value="18">객실 내 흡연</label>
+										<label for="theme19" class="checkbox-inline icon-label"> <input type="checkbox" id="theme19" name="ad_theme[]" value="19">취사가능</label>
 									</div>
 								</td>
 								<td class="help-tooltip popover-container"><a href="javascript:void(0)" data-toggle="popover"><img id="tooltip" src="${pageContext.request.contextPath}/assets/img/tooltip.png"></a>
@@ -304,13 +260,10 @@
 							<tr>
 								<th>오시는길</th>
 								<td colspan="2">
-									<div class="form-layer">
+									<div id = "visitpath" class="form-layer">
 										<input type="text" class="form-control writeform" name="traffic_info" placeholder="주요 버스터미널, 기차역 등에서 숙소를 찾아가는 방법을 간단히 기재해 주세요. 예시)대성리역 차량 10분" value=""> <br> 
 										<input type="text" class="form-control writeform" name="traffic_info2" placeholder="주요 버스터미널, 기차역 등에서 숙소를 찾아가는 방법을 간단히 기재해 주세요. 예시)대성리역 차량 10분" value=""> <br> 
 										<input type="text" class="form-control writeform" name="traffic_info3" placeholder="주요 버스터미널, 기차역 등에서 숙소를 찾아가는 방법을 간단히 기재해 주세요. 예시)대성리역 차량 10분" value=""> 
-										<span
-											id="remain-traffic_info" class="remain-cnt float-right">(<span id="count">0</span>/<span id="max">1000</span>)
-										</span>
 									</div> <span class="exam-button"> <i class="fa fa-angle-up" aria-hidden="true"></i></span>
 
 								</td>
@@ -335,7 +288,7 @@
 								</td>
 							</tr>
 							<tr>
-								<th>숙소 이용<br> 규칙
+								<th>숙소 이용 규칙
 								</th>
 								<td colspan="2">
 									<div class="form-layer">
@@ -363,32 +316,89 @@
 		<!-- container -->
 	</div>
 
-	<!-- //footer -->
-	<footer>
-		<div class="align">
-			<ul class="link">
-				<li><a href="">회사소개</a> <span>|</span></li>
-				<li><a href="">이용약관</a> <span>|</span></li>
-				<li><a href="">개인정보처리방침</a> <span>|</span></li>
-				<li><a href="">소비자 분쟁해결 기준</a> <span>|</span></li>
-				<li><a href="">사업자 정보확인</a> <span>|</span></li>
-				<li><a href="">양도어때 마케팅센터</a> <span>|</span></li>
-				<li><a href="">액티비티 호스트센터</a> <span>|</span></li>
-				<li><a href="">펜션 양도어때</a> <span>|</span></li>
-				<li><a href="">콘텐츠산업진흥법에의한 표시</a></li>
-			</ul>
-
-			<p>
-				<b>양도어때 고객센터 1670-4215</b> <span>오전 9시 - 새벽 3시</span>
-			</p>
-
-			<address>
-				<span>(주) 양도어때컴퍼니</span> 주소 : 서울특별시 봉천동 봉천사로 611, 648타워 14층 | 대표이사 : 최종빈 | 사업자등록번호: 741-64-88541 <br> 통신판매번호 : 2011-서울봉천-75441 | 관광사업자 등록번호: 제2011-74호 | 전화번호 : 1670-4215 | 전자우편주소 :
-				yangdo@goodchoice.kr <br> Copyright GC COMPANY Corp. All rights reserved.
-			</address>
-
+	<!-- footer -->
+	<c:import url="/WEB-INF/views/includes/footer(host).jsp"></c:import>
+	<!-- footer -->
+	
+<!-- 이미지 업로드 modal -->
+<div id = "img-uploader" class = "modal fade in" aria-hidden="false">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+				<h4 class="modal-title">이미지 업로드</h4>
+			</div>
+			
+			<div class="modal-body" style="height:300px">
+				<div id="drag-and-drop-zone" style="height:200px;border:1px dashed gray;border-radius:3px;position:relative">
+					<label style="position:relative;left:50%;margin-left:-100px;top:50%;margin-top:-15px;overflow:hidden">
+						<span class="btn btn-primary">드래그 하시거나 클릭하세요.</span>
+						<input style="position:absolute;left:0;top:0;border-width: 0 0 100px 200px;border:solid transparent;direction: ltr;opacity:.0;cursor:pointer" type="file" name="files[]" multiple="multiple" title="Click to add Files">
+					</label>
+				</div>
+			<div id="upload-list" style="margin-top:10px"></div>
+			<span>
+				* 여러장을 한꺼번에 드래그하여 업로드 할 수 있습니다. <br><strong>&nbsp;&nbsp;<font color="#ff0000">최대 20장 까지 등록이 가능합니다.</font></strong>
+				<br>
+				<strong>&nbsp;&nbsp;사진 권장사이즈 : 1920 * 1080 또는 960 * 540</strong>
+			</span>
+			<span class="btn btn-success" data-dismiss="modal" aria-label="Close" style="float: right; margin-top:-25px;">확인</span>
+			</div>
 		</div>
-	</footer>
-
+	</div>
+</div>
+<div class="modal-backdrop fade in"></div>
+<!-- 이미지 업로드 modal -->	
 </body>
+
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+	function daumPostCode(){
+		 new daum.Postcode({
+	            oncomplete: function(data) {
+	                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+	                // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+	                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	                var roadAddr = data.roadAddress; // 도로명 주소 변수
+	                var extraRoadAddr = ''; // 참고 항목 변수
+	                var delname = data.sigungu;
+	                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+	                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+	                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+	                    extraRoadAddr += data.bname;
+	                }
+	                // 건물명이 있고, 공동주택일 경우 추가한다.
+	                if(data.buildingName !== '' && data.apartment === 'Y'){
+	                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	                }
+	                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+	                if(extraRoadAddr !== ''){
+	                    extraRoadAddr = ' (' + extraRoadAddr + ')';
+	                }
+
+	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	                document.getElementById("input_roadAddress").value = roadAddr;
+	                document.getElementById("lawcode").value = data.bcode;
+	                document.getElementById("fullname").value = data.sido + ' ' + data.sigungu + ' ' + data.bname;
+	                document.getElementById("delivername").value = data.sigungu;
+	                
+	                console.log("delivername : " + delname)
+	            }
+	        }).open();
+	}
+</script>
+
+<script type = "text/javascript">
+
+$("#addimage").on("click", function(){
+	$("#img-uploader").modal("show");
+})
+
+</script>
+
+
+
 </html>
