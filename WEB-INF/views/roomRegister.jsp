@@ -7,6 +7,11 @@
 <meta charset="UTF-8">
 <title>객실 관리</title>
 </head>
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/assets/bootstrap/js/bootstrap.js"></script>
+
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/hostHeaderFooter.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/main.css">
 
@@ -65,64 +70,61 @@
 	
 	<div id = "process">
 		<ul>
-			<li class = "imgs">
-				<a href="">
-					<span><img src="${pageContext.request.contextPath}/assets/img/mypage.png"></span>
-					<span>마이페이지 입력</span>
-				</a>
+			<li class="imgs">
+				<a href="${pageContext.request.contextPath}/host/mypagereg"><span><img src="${pageContext.request.contextPath}/assets/img/mypage.png"></span>
+				<span>마이페이지 입력</span></a>
 			</li>
-			<li class = "prog">
-				<span class = "do">&nbsp;</span>
+			<li class="prog">
+				<br>
+				<span class="do">&nbsp;</span>
 				<span>&nbsp;</span>
-				<span class = "do">&nbsp;</span>
+				<span class="do">&nbsp;</span>
 				<span>&nbsp;</span>
-				<span class = "do">&nbsp;</span>
+				<span class="do">&nbsp;</span>
 				<span>&nbsp;</span>
-				<span class = "do">&nbsp;</span>
-				<span>&nbsp;</span>
-			</li>
-			<li class = "imgs">
-				<a href="">
-					<span><img src="${pageContext.request.contextPath}/assets/img/introduce.png"></span>
-					<span>소개작성</span>
-				</a>
-			</li>
-			<li class = "prog">
-				<span class = "do">&nbsp;</span>
-				<span>&nbsp;</span>
-				<span class = "do">&nbsp;</span>
-				<span>&nbsp;</span>
-				<span class = "do">&nbsp;</span>
-				<span>&nbsp;</span>
-				<span class = "do">&nbsp;</span>
+				<span class="do">&nbsp;</span>
 				<span>&nbsp;</span>
 			</li>
-			<li class = "imgs">
-				<a href="">
-					<span><img src="${pageContext.request.contextPath}/assets/img/rules.png"></span>
-					<span>이용규칙 관리</span>
-				</a>
+			<li class="imgs">
+				<a href="${pageContext.request.contextPath}/host/introreg"><span><img src="${pageContext.request.contextPath}/assets/img/introduce.png"></span>
+				<span>소개작성</span></a>
 			</li>
-			<li class = "prog">
-				<span class = "do">&nbsp;</span>
+			<li class="prog">
+				<br>
+				<span class="do">&nbsp;</span>
 				<span>&nbsp;</span>
-				<span class = "do">&nbsp;</span>
+				<span class="do">&nbsp;</span>
 				<span>&nbsp;</span>
-				<span class = "do">&nbsp;</span>
+				<span class="do">&nbsp;</span>
 				<span>&nbsp;</span>
-				<span class = "do">&nbsp;</span>
+				<span class="do">&nbsp;</span>
 				<span>&nbsp;</span>
 			</li>
-			<li class = "imgs">
-				<a href="">
-					<span><img src="${pageContext.request.contextPath}/assets/img/room.png" class = "active"></span>
-					<span>객실 관리</span>
-				</a>
+			<li class="imgs">
+				<a href="${pageContext.request.contextPath}/host/rules"><span><img src="${pageContext.request.contextPath}/assets/img/rules.png"></span>
+				<span>이용규칙 관리</span></a>
+			</li>
+			<li class="prog">
+				<br>
+				<span class="do">&nbsp;</span>
+				<span>&nbsp;</span>
+				<span class="do">&nbsp;</span>
+				<span>&nbsp;</span>
+				<span class="do">&nbsp;</span>
+				<span>&nbsp;</span>
+				<span class="do">&nbsp;</span>
+				<span>&nbsp;</span>
+			</li>
+			<li class="imgs">
+				<a href="${pageContext.request.contextPath}/host/roomreg"><span><img src="${pageContext.request.contextPath}/assets/img/room.png" class="active"></span>
+				<span>객실 관리</span></a>
 			</li>
 		</ul>
 	</div>
 	
+	<!-- 내용 시작 -->
 	
+	<!-- 내용 끝 -->
 <!-- container -->
 </div>
 

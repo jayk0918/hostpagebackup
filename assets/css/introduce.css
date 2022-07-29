@@ -1,29 +1,61 @@
 @charset "UTF-8";
 
-.form-horizontal{
-	width: 833px;
-	background-color:#FFFFFF;
-	margin-top: 20px;
-	margin-left: auto;
-	margin-right: auto;
-	border-radius: 5px;
-	box-shadow: -1px 1px 2px #aaa;
+
+#detail{
+	text-align: left;
+	font-size:15px;
+	font-weight: bold;
+}
+.backgrou{
+	background-color: #EAEAEA;
+	border-radius: 6px;
+}
+.btn-deleete{
+	float: right;
+	color: #fff;
+	background-color: #F2114C;
+}
+#room-images> li{
+	float:left;
+	width: 200px;
+	margin:10px
 }
 
-.table{
-	width: 810px;
-	display: inline-block;
-	margin-top: 24px;
-	margin-left: 24px;
-	margin-right: 24px;
-	background-color: #fff;
-	border: 0;
+
+#room-images > li > div >img{
+	width: 200px;
+}
+#tooltip{
+	width: 20px;
+	height: 20px;
+}
+#intro{
+	border : 1px solid #ddd;
+}
+.bd_r_none{
+	text-align: left;
+	border-right: 0px;
+}
+#address{
+	margin: 0px 0px 0px 95px;
+}
+
+.guest-title-layer{
+	margin: 0px 10px 20px 24px;
+	text-align: left;
+	font-size:15px;
+	font-weight: bold;
+}
+
+.guest-h3{
+	text-align: left;
+	margin: 0px 0px 0px 24px;
 }
 
 .table tbody tr td div.form-layer{
 	width: auto;
 	display: table;
-	margin-bottom: 12px;
+	margin: 0px 0px 12px 0px;	
 }
 
 .table tbody tr td div.form-layer-text{
@@ -135,6 +167,7 @@ div.select-style.small-size{
 
 .form-control{
 	display: block;
+	width: 714px;
 	padding: 6px 12px;
 	font-size: 14px;
 	line-height: 1.42857143;
@@ -208,51 +241,30 @@ div.select-style.small-size{
 	font-size: 13px;
 }
 
-#nav{
-	height: 80px;
+#choice{
+	margin-left : 15px;
 }
 
-#status{
-	width: 830px;
-	background-color : #FFFFFF;
-	margin-top: 20px;
-	margin-left: auto;
-	margin-right: auto;
-	padding-top: 10px;
-	border-radius : 5px;
-	box-shadow: -1px 1px 2px #aaa;
+#addimage{
+	margin-left : 10px;
 }
 
-#status p{
-	margin-top : 10px;
-	font-size : 24px;
+.instruction{
+	list-style-type : disc;
+	margin-left : 20px;
 }
 
-#statustable{
-	min-width : 830px;
-	margin : auto;
-	margin-bottom : 40px;
-	font-size : 18px;
+textarea::placeholder {
+	padding-top: 50px;	
 }
 
-#statustable thead tr th{
-	padding-top : 10px;
-	padding-bottom : 10px;
-}
-
-#statustable tbody tr td{
-	padding-top : 10px;
-	padding-bottom : 10px;
-}
-
-#leftaddress{
-	margin-left: 96px;
-}
-
-#jobstyle{
+.order{
 	text-align: left;
+	margin-top: 5px;
+	padding-left: 10px;
+	padding-bottom: 5px;
 }
 
-#joblist{
-	text-align: left;
+.writeform{
+	width: 680px;
 }

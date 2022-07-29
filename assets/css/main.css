@@ -17,7 +17,7 @@
 }
 
 #register a{
-	width : 250px;
+	width : 180px;
 	height: 48px;
 	border-radius: 4px;
 	background-color : #f2114c;
@@ -27,20 +27,21 @@
 	text-align: center;
 	padding-top: 14px;
 	padding-bottom: 16px;
+	display: inline-block;
 }
 
 #register a span{
-	font-size : 14px;
+	font-size : 16px;
 	color : white;
 }
 
 #process{
-	width: 830px;
+	width: 1024px;
 	height : 150px;
 	background-color: #FFFFFF;
 	margin-top: 20px;
-	margin-left: auto;
-	margin-right: auto;
+	padding-left: 30px;
+	padding-right: 30px;
 	border-radius : 5px;
 	box-shadow: -1px 1px 2px #aaa;
 }
@@ -101,18 +102,15 @@
 	margin-top: 16px;
 }
 
+
 #salary{
-	width: 900px;
-	margin-left: auto;
-	margin-right: auto;
+	width: 1024px;
 	margin-top: 20px;
 	margin-bottom: 20px;
-	padding-left: 70px;
-	display: flex;
 }
 
 #roomsalary{
-	width: 380px;
+	width: 450px;
 	height: 160px;
 	background-color: #546e7a;
 	float: left;
@@ -172,7 +170,7 @@
 }
 
 #reviews{
-	width: 380px;
+	width: 450px;
 	height: 160px;
 	background-color: #00bfa5;
 	float: right;
@@ -235,7 +233,7 @@
 }
 
 #notice{
-	width: 850px;
+	width: 1024px;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 20px;
@@ -287,3 +285,23 @@
 	float:right;
 }
 
+.table{
+	width: 916px;
+	display: inline-block;
+	margin-top: 24px;
+	margin-left: 24px;
+	margin-right: 24px;
+	background-color: #fff;
+	border: 0;
+}
+
+.form-horizontal{
+	width: 1024px;
+	background-color:#FFFFFF;
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 20px;
+	border-radius: 5px;
+	box-shadow: -1px 1px 2px #aaa;
+}

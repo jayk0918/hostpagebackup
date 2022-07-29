@@ -34,7 +34,7 @@
 <!-- 펜션어때 헤더 -->
 
 <!-- nav -->
-<div id = "nav">
+<div id = "nav" class = "center-block">
 	<ul>
 		<li><a href="">예약관리</a>
 			<!-- 
@@ -70,11 +70,17 @@
 
 <div id = "container">
 	
-	<div id = "process">
+	<div id = "register">
+		<p>아래의 정보를 모두 입력하고 숙소 등록을 완료하세요.</p>
+		<br>
+		<a href=""><span>업체 정보 등록 ></span></a>
+	</div>
+	
+	<div id = "process" class = "center-block">
 		<ul>
 			<li class = "imgs">
 				<a href="">
-					<span><img src="${pageContext.request.contextPath}/assets/img/mypage.png"></span>
+					<span><img src="${pageContext.request.contextPath}/assets/img/mypage.png" class = "active"></span>
 					<span>마이페이지 입력</span>
 				</a>
 			</li>
@@ -108,7 +114,7 @@
 			</li>
 			<li class = "imgs">
 				<a href="">
-					<span><img src="${pageContext.request.contextPath}/assets/img/rules.png"  class = "active"></span>
+					<span><img src="${pageContext.request.contextPath}/assets/img/rules.png"></span>
 					<span>이용규칙 관리</span>
 				</a>
 			</li>

@@ -70,7 +70,7 @@
 		<div id="process">
 			<ul>
 				<li class="imgs">
-					<a href=""><span><img src="${pageContext.request.contextPath}/assets/img/mypage.png" class="active"></span>
+					<a href="${pageContext.request.contextPath}/host/mypagereg"><span><img src="${pageContext.request.contextPath}/assets/img/mypage.png" class="active"></span>
 					<span>마이페이지 입력</span></a>
 				</li>
 				<li class="prog">
@@ -85,7 +85,7 @@
 					<span>&nbsp;</span>
 				</li>
 				<li class="imgs">
-					<a href=""><span><img src="${pageContext.request.contextPath}/assets/img/introduce.png"></span>
+					<a href="${pageContext.request.contextPath}/host/introreg"><span><img src="${pageContext.request.contextPath}/assets/img/introduce.png"></span>
 					<span>소개작성</span></a>
 				</li>
 				<li class="prog">
@@ -100,7 +100,7 @@
 					<span>&nbsp;</span>
 				</li>
 				<li class="imgs">
-					<a href=""><span><img src="${pageContext.request.contextPath}/assets/img/rules.png"></span>
+					<a href="${pageContext.request.contextPath}/host/rules"><span><img src="${pageContext.request.contextPath}/assets/img/rules.png"></span>
 					<span>이용규칙 관리</span></a>
 				</li>
 				<li class="prog">
@@ -115,7 +115,7 @@
 					<span>&nbsp;</span>
 				</li>
 				<li class="imgs">
-					<a href=""><span><img src="${pageContext.request.contextPath}/assets/img/room.png"></span>
+					<a href="${pageContext.request.contextPath}/host/roomreg"><span><img src="${pageContext.request.contextPath}/assets/img/room.png"></span>
 					<span>객실 관리</span></a>
 				</li>
 			</ul>
@@ -123,10 +123,6 @@
 
 		<form class="form-horizontal">
 			<table class="table table-bordered">
-				<colgroup>
-					<col width="136px">
-					<col width="778px">
-				</colgroup>
 				<thead>
 				</thead>
 				<tbody>
@@ -306,7 +302,7 @@
                             
                             <br>
                             
-                            <div class="form-layer mb_24" style = "text-align:left;">
+                            <div id = "jobstyle" class="form-layer mb_24">
                                 <span class="form-title">업태</span>
                                 <label class="checkbox-inline icon-label"><input type="checkbox" value="2" name="b_condition[]" disabled="disabled">숙박</label>
                                 <label class="checkbox-inline icon-label"><input type="checkbox" value="6" name="b_condition[]" checked="checked" disabled="disabled">기타</label>
@@ -322,7 +318,7 @@
 							
 							<br>
 							
-                            <div class="form-layer mb_24" style = "text-align:left;">
+                            <div id = "joblist" class="form-layer mb_24">
                                 <span class="form-title">업종</span>
                                 <label class="checkbox-inline icon-label"><input type="checkbox" value="6" name="b_type[]" disabled="disabled">민박</label>
                                 <label class="checkbox-inline icon-label"><input type="checkbox" value="16" name="b_type[]" disabled="disabled">외국인도시민박</label>
