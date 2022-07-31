@@ -1,156 +1,130 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!Doctype html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>객실 관리</title>
 </head>
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/assets/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.js"></script>
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/hostHeaderFooter.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/main.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/roomreg.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/introduce.css">
+
 
 <body>
-<!-- 펜션어때 헤더 -->
+	<!-- 펜션어때 헤더 -->
 
-<div id="wrap">
-	<div id="header" class="clearfix">
-		<div id="section">
-			<h1><a href="">양도어때HOST</a></h1>
-			<ul class="clearfix">
-				<li><a href=""><img src="${pageContext.request.contextPath}/assets/img/mypageIcon.png"> 마이페이지</a></li>
-				<li><a href=""><img src="${pageContext.request.contextPath}/assets/img/logout.png"> 로그아웃</a></li>
-			</ul>
+	<div id="wrap">
+		<div id="header" class="clearfix">
+			<div id="section">
+				<h1>
+					<a href="">양도어때HOST</a>
+				</h1>
+				<ul class="clearfix">
+					<li><a href=""><img
+							src="C:\javaStudy\workspace_fornt\hw01\assets\img/mypageIcon.png">
+							마이페이지</a></li>
+					<li><a href=""><img
+							src="C:\javaStudy\workspace_fornt\hw01\assets\img/logout.png">
+							로그아웃</a></li>
+				</ul>
+			</div>
 		</div>
 	</div>
-</div>
-<!-- 펜션어때 헤더 -->
-
-<!-- nav -->
-<div id = "nav" class = "center-block">
-	<ul>
-		<li><a href="">예약관리</a>
-			<!-- 
+	<!-- 펜션어때 헤더 -->
+	<!-- nav -->
+	<div id="nav">
+		<ul>
+			<li><a href="">예약관리</a> <!-- 
 			<ul id = "onHover">
 				<li><a href="">예약내역</a></li>
 				<li><a href="">정산 및 매출내역</a></li>
 				<li><a href="">리뷰관리</a></li>
 			</ul>
-			 -->
-		</li>
-		<li><a href="">객실관리</a></li>
-		<li><a href="">숙소관리</a>
-			<!--  
+			 --></li>
+			<li><a href="">객실관리</a></li>
+			<li><a href="">숙소관리</a> <!--  
 			<ul id = "onHover">
 				<li><a href="">소개작성</a></li>
 				<li><a href="">이용규칙관리</a></li>
 			</ul>
-			-->
-		</li>
-		<li><a href="">고객센터</a>
-			<!-- 
+			--></li>
+			<li><a href="">고객센터</a> <!-- 
 			<ul id = "onHover">
 				<li><a href = "">공지사항</a></li>
 				<li><a href = "">자주묻는질문</a></li>
 				<li><a href = "">서비스 약관</a></li>
 			</ul>
-			 -->
-		</li>
-	</ul>
-</div>
-<!-- nav -->
+			 --></li>
+		</ul>
+	</div>
+	<!-- nav -->
+	<div id="container">
 
+		<div id="process">
+			<ul>
+				<li class="imgs"><a href=""> <span><img
+							src="C:\javaStudy\workspace_fornt\hw01\assets\img/mypage.png"></span>
+						<span>마이페이지 입력</span>
+				</a></li>
+				<li class="prog"><span class="do">&nbsp;</span> <span>&nbsp;</span>
+					<span class="do">&nbsp;</span> <span>&nbsp;</span> <span class="do">&nbsp;</span>
+					<span>&nbsp;</span> <span class="do">&nbsp;</span> <span>&nbsp;</span>
+				</li>
+				<li class="imgs"><a href=""> <span><img
+							src="C:\javaStudy\workspace_fornt\hw01\assets\img/introduce.png "
+							></span> <span>소개작성</span>
+				</a></li>
+				<li class="prog"><span class="do">&nbsp;</span> <span>&nbsp;</span>
+					<span class="do">&nbsp;</span> <span>&nbsp;</span> <span class="do">&nbsp;</span>
+					<span>&nbsp;</span> <span class="do">&nbsp;</span> <span>&nbsp;</span>
+				</li>
+				<li class="imgs"><a href=""> <span><img
+							src="C:\javaStudy\workspace_fornt\hw01\assets\img/rules.png"></span>
+						<span>이용규칙 관리</span>
+				</a></li>
+				<li class="prog"><span class="do">&nbsp;</span> <span>&nbsp;</span>
+					<span class="do">&nbsp;</span> <span>&nbsp;</span> <span class="do">&nbsp;</span>
+					<span>&nbsp;</span> <span class="do">&nbsp;</span> <span>&nbsp;</span>
+				</li>
+				<li class="imgs"><a href=""> <span><img
+							src="C:\javaStudy\workspace_fornt\hw01\assets\img/room.png" class="active"></span>
+						<span>객실 관리</span>
+				</a></li>
+			</ul>
+		</div>
+	</div>
 
-<div id = "container">
+	<!-- container -->
 	
-	<div id = "process" class = "center-block">
-		<ul>
-			<li class="imgs">
-				<a href="${pageContext.request.contextPath}/host/mypagereg"><span><img src="${pageContext.request.contextPath}/assets/img/mypage.png"></span>
-				<span>마이페이지 입력</span></a>
-			</li>
-			<li class="prog">
-				<br>
-				<span class="do">&nbsp;</span>
-				<span>&nbsp;</span>
-				<span class="do">&nbsp;</span>
-				<span>&nbsp;</span>
-				<span class="do">&nbsp;</span>
-				<span>&nbsp;</span>
-				<span class="do">&nbsp;</span>
-				<span>&nbsp;</span>
-			</li>
-			<li class="imgs">
-				<a href="${pageContext.request.contextPath}/host/introreg"><span><img src="${pageContext.request.contextPath}/assets/img/introduce.png"></span>
-				<span>소개작성</span></a>
-			</li>
-			<li class="prog">
-				<br>
-				<span class="do">&nbsp;</span>
-				<span>&nbsp;</span>
-				<span class="do">&nbsp;</span>
-				<span>&nbsp;</span>
-				<span class="do">&nbsp;</span>
-				<span>&nbsp;</span>
-				<span class="do">&nbsp;</span>
-				<span>&nbsp;</span>
-			</li>
-			<li class="imgs">
-				<a href="${pageContext.request.contextPath}/host/rules"><span><img src="${pageContext.request.contextPath}/assets/img/rules.png"></span>
-				<span>이용규칙 관리</span></a>
-			</li>
-			<li class="prog">
-				<br>
-				<span class="do">&nbsp;</span>
-				<span>&nbsp;</span>
-				<span class="do">&nbsp;</span>
-				<span>&nbsp;</span>
-				<span class="do">&nbsp;</span>
-				<span>&nbsp;</span>
-				<span class="do">&nbsp;</span>
-				<span>&nbsp;</span>
-			</li>
-			<li class="imgs">
-				<a href="${pageContext.request.contextPath}/host/roomreg"><span><img src="${pageContext.request.contextPath}/assets/img/room.png" class="active"></span>
-				<span>객실 관리</span></a>
+	<!-- 객실 추가 -->
+	<div class="guest_nav">
+		<ul class="nav nav-tabs room-tabs">
+			<li class="active">
+				<a  href="">+객실추가</a>
 			</li>
 		</ul>
 	</div>
-	
-	<!-- 내용 시작 -->
-	<!-- 객실 추가 -->
-	<div id = "addroom" class = "center-block">
-		<div class="guest_nav">
-			<ul class="nav nav-tabs room-tabs">
-				<li>
-					<a href="">+ 객실추가</a>
-				</li>
-			</ul>
-		</div>
-		<div class="guest-title-layer">
-			<ul id = "design">
-				<li class = "instruction">[+ 객실추가]를 누르시면 객실을 추가할 수 있으며 최대 개수는 20개 입니다.</li>
-				<li class = "instruction">요금설정에서는 요일이 겹치지 않게 주의해 주시기 바랍니다.</li>
-				<li class = "instruction">해당 페이지의 요금 설정은 객실별 기준 가격입니다.</li>
-				<li class = "instruction">객실별 판매 금액 수정은 등록 이후 '객실관리' 메뉴에서 가능합니다.</li>
-				<li class = "instruction">[객실정보 복사추가]를 누르시면 선택하신 객실의 정보를 복사하여 추가 하실수 있습니다.</li>
-			</ul>
-			<div class = "room-copy-layer">
-				<button type="button" class = "btn btn-primary">객실정보 복사추가</button>
-			</div>
-		</div>
-		
+	<br><br><br><br><br>
+	<div class="guest-title-layer" >
+		<ul>
+			<li>[+ 객실추가]를 누르시면 객실을 추가할 수 있으며 최대 개수는 20개 입니다.</li>
+			<li>요금설정에서는 요일이 겹치지 않게 주의해 주시기 바랍니다.</li>
+			<li>해당 페이지의 요금 설정은 객실별 기준 가격입니다.</li>
+			<li>객실별 판매 금액 수정은 등록 이후 '객실관리' 메뉴에서 가능합니다.</li>
+			<li>[객실정보 복사추가]를 누르시면 선택하신 객실의 정보를 복사하여 추가 하실수 있습니다.</li>
+		</ul>
 	</div>
+	
+	<button type="button" id="btn_room">객실정보 복사추가</button>
 	<!-- 객실 추가 -->
+	
 	<!-- 객실정보 폼 -->
 		<form id="room_form" class="form-horizontal">
-			<table class="table">
+			<table class="table table-bordered">
 				<tbody>
 					<tr>
 						<th>객실 정보</th>
@@ -165,7 +139,7 @@
 							<div class="form-layer mb_24">
 								<span class="form-title">기준인원</span>
 								<span class="form-body">
-									<div class="select-style">
+									<div class="select-style" style="width:150px">
 										<select name="room_type">
 											<option value="" selected="selected" class="text-center">인원을 선택해주세요</option>
 											<option value="2">2명</option>
@@ -185,7 +159,7 @@
 							<div class="form-layer mb_24">
 								<span class="form-title">최대인원</span>
 								<span class="form-body">
-									<div class="select-style middle-size">
+									<div class="select-style" style="width:150px">
 										<select name="room_type">
 											<option value="" selected="selected" class="text-center">인원을 선택해주세요</option>
 											<option value="4">4명</option>
@@ -200,24 +174,25 @@
 								</span>
 							</div>
 						</td>
-						<td class = "border_right">
-						</td>
+						
 					</tr>
 					
 					<tr>
 						<th>객실 이미지<br>(최대 15장)</th>
 						<td class="bd_r_none">
 							<div class="form-layer mb_24">
-								<p class = "description">* 객실의 전반적인 이미지를 업로드 해주시기 바랍니다.</p>
-								<p class = "description">* 이미지 교체를 원하시면 "변경"을 선택하시고 삭제를 원하시면 우측 "삭제"를 선택하시기 바랍니다.</p>
-								<p class = "description">* 이미지 장소는 짧게 기입해주시기 바랍니다. 예시) 객실명, 침대, 화장실 등</p>
-								<p class = "description">* 첫 이미지가 메인 이미지입니다.</p>
+								<ul >
+									<li>객실의 전반적인 이미지를 업로드 해주시기 바랍니다.</li>
+									<li>이미지 교체를 원하시면 "변경"을 선택하시고 삭제를 원하시면 우측 "삭제"를 선택하시기 바랍니다.</li>
+									<li>이미지 장소는 짧게 기입해주시기 바랍니다. 예시) 객실명, 침대, 화장실 등</li>
+									<li>첫 이미지가 메인 이미지입니다.</li>
+								</ul>
 							</div>
 							<button type="button" id="btn_img">+이미지 추가</button>
 						</td>
-						<td class = "border_right">
-							<a href="javascript:void(0)" data-toggle="popover" data-original-title="" title="">
-								<img id="tooltip" src="${pageContext.request.contextPath}/assets/img/tooltip.png">
+						<td class="bd_r_none">
+							<a href="">
+								<img src="./assets/img/tooltip.png">
 							</a>
 						</td>
 					</tr>
@@ -250,7 +225,7 @@
 							<br><br>
 							</p>
 						</td>
-						<td class="bd_r_none border_right">
+						<td class="bd_r_none">
 						</td>
 					</tr>
 					<tr >
@@ -409,7 +384,7 @@
 							</div>
 							
 						</td>
-						<td class="bd_r_none border_right">
+						<td class="bd_r_none">
 						</td>
 					</tr>
 					
@@ -438,7 +413,7 @@
 								<button type="button" class="btn btn-default btn_add_02" data-role="season-SUBPEAK">+ 요일별 요금 정보 추가</button>
 							</div>
 						</td>
-						<td class="bd_r_none border_right">
+						<td class="bd_r_none">
 						</td>
 					</tr>					
 					
@@ -467,12 +442,12 @@
 								<button type="button" class="btn btn-default btn_add_02" data-role="season-SUBPEAK">+ 요일별 요금 정보 추가</button>
 							</div>
 						</td>
-						<td class="bd_r_none border_right">
+						<td class="bd_r_none">
 						</td>
 					</tr>
 					
 					<tr>
-						<td class="bd_r_none border_bottom">
+						<td class="bd_r_none">
 							<div class="form-layer">
 								<span class="form-title large" style="vertical-align:top">
 									추가인원 추가비용<br>
@@ -494,48 +469,51 @@
 								<button type="button" class="btn btn-default btn_add_02" data-role="season-SUBPEAK">+ 요일별 요금 정보 추가</button>
 							</div>
 						</td>
-						<td class="bd_r_none border_bottom border_right">
+						<td class="bd_r_none">
 						</td>
 					</tr>
 				</tbody>
 			</table>
 			
-		<div class="submit-layer">
-			<button type="button" class="btn btn-default btn-submit btn-guest-room" onclick="deleteRoomInfo()">삭제하기</button>
-			<button type="button" class="btn btn-yeogi btn-submit btn-guest-room" onclick="submitRoomInfo()">저장하기</button>
-		</div>
-	</form>
+			<!-- 삭제 저장 버튼 -->
+			<div class="submit-layer">
+				<button type="button" class="btn btn-default btn-submit btn-guest-room" onclick="deleteRoomInfo()">삭제하기</button>
+				<button type="button" class="btn btn-yeogi btn-submit btn-guest-room" onclick="submitRoomInfo()">저장하기</button>
+			</div>
+			
+			
+		</form>
+	<!-- 객실정보 폼 -->
 	
-	<!-- 내용 끝 -->
-<!-- container -->
-</div>
+	<!-- //footer -->
+	<footer>
+		<div class="align">
+			<ul class="link">
+				<li><a href="">회사소개</a> <span>|</span></li>
+				<li><a href="">이용약관</a> <span>|</span></li>
+				<li><a href="">개인정보처리방침</a> <span>|</span></li>
+				<li><a href="">소비자 분쟁해결 기준</a> <span>|</span></li>
+				<li><a href="">사업자 정보확인</a> <span>|</span></li>
+				<li><a href="">양도어때 마케팅센터</a> <span>|</span></li>
+				<li><a href="">액티비티 호스트센터</a> <span>|</span></li>
+				<li><a href="">펜션 양도어때</a> <span>|</span></li>
+				<li><a href="">콘텐츠산업진흥법에의한 표시</a></li>
+			</ul>
 
-<!-- //footer -->
-<footer>
-	<div class="align">
-		<ul class="link">
-			<li><a href="">회사소개</a> <span>|</span></li>
-			<li><a href="">이용약관</a> <span>|</span></li>
-			<li><a href="">개인정보처리방침</a> <span>|</span></li>
-			<li><a href="">소비자 분쟁해결 기준</a> <span>|</span></li>
-			<li><a href="">사업자 정보확인</a> <span>|</span></li>
-			<li><a href="">양도어때 마케팅센터</a> <span>|</span></li>
-			<li><a href="">액티비티 호스트센터</a> <span>|</span></li>
-			<li><a href="">펜션 양도어때</a> <span>|</span></li>
-			<li><a href="">콘텐츠산업진흥법에의한 표시</a></li>
-		</ul>
+			<p>
+				<b>양도어때 고객센터 1670-4215</b> <span>오전 9시 - 새벽 3시</span>
+			</p>
 
-		<p>
-			<b>양도어때 고객센터 1670-4215</b> <span>오전 9시 - 새벽 3시</span>
-		</p>
+			<address>
+				<span>(주) 양도어때컴퍼니</span> 주소 : 서울특별시 봉천동 봉천사로 611, 648타워 14층 | 대표이사 :
+				최종빈 | 사업자등록번호: 741-64-88541 <br> 통신판매번호 : 2011-서울봉천-75441 |
+				관광사업자 등록번호: 제2011-74호 | 전화번호 : 1670-4215 | 전자우편주소 :
+				yangdo@goodchoice.kr <br> Copyright GC COMPANY Corp. All rights
+				reserved.
+			</address>
 
-		<address>
-			<span>(주) 양도어때컴퍼니</span> 주소 : 서울특별시 봉천동 봉천사로 611, 648타워 14층 | 대표이사 : 최종빈 | 사업자등록번호: 741-64-88541 <br> 통신판매번호 : 2011-서울봉천-75441 | 관광사업자 등록번호: 제2011-74호 | 전화번호 : 1670-4215 |
-			전자우편주소 : yangdo@goodchoice.kr <br> Copyright GC COMPANY Corp. All rights reserved.
-		</address>
-
-	</div>
-</footer>
+		</div>
+	</footer>
 
 </body>
 </html>

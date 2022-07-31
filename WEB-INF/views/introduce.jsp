@@ -168,8 +168,8 @@
 												<div>
 													<img data-adino="235381" src="${pageContext.request.contextPath}/assets/img/logout.png" class="img-rounded">
 												</div>
-												<button data-role="img-changer" data-adino="235381" data-ano="3309" data-armgno="0" data-type="8" type="button" class="btn btn-xs btn-success">변경</button>
-												<button data-role="img-delete" data-adino="235381" type="button" class="btn btn-xs btn-deleete">삭제</button>
+												<button id = "changeimage" data-role="img-changer" data-adino="235381" data-ano="3309" data-armgno="0" data-type="8" type="button" class="btn btn-xs btn-success">변경</button>
+												<button id = "deleteimage" data-role="img-delete" data-adino="235381" type="button" class="btn btn-xs btn-deleete">삭제</button>
 											</li>
 										</ul>
 										
@@ -351,6 +351,38 @@
 </div>
 <div class="modal-backdrop fade in"></div>
 <!-- 이미지 업로드 modal -->	
+
+
+<!-- 이미지 삭제 modal -->
+<div id = "img-delete" class="modal fade in" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">삭제 확인</h4>
+      </div>
+      <div class="modal-body">
+        <p>정말 삭제하시겠습니까?</p>
+      </div>
+      <div class="modal-footer">
+        <button id = "cancel" type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+        <button type="button" class="btn btn-danger">삭제</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 이미지 삭제 modal -->
+
+<!-- popover -->
+<div id = "basicinfo" class = "popover fade left in" role = "tooltip">
+</div>
+
+<div id = "basicinfo" class = "popover fade left in" role = "tooltip">
+</div>
+
+<div id = "basicinfo" class = "popover fade left in" role = "tooltip">
+</div>
+
+
 </body>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -365,6 +397,7 @@
 	                var roadAddr = data.roadAddress; // 도로명 주소 변수
 	                var extraRoadAddr = ''; // 참고 항목 변수
 	                var delname = data.sigungu;
+	                var fullname = data.sido + ' ' + data.sigungu + ' ' + data.bname;
 	                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
 	                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
 	                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
@@ -383,9 +416,9 @@
 	                document.getElementById("input_roadAddress").value = roadAddr;
 	                document.getElementById("lawcode").value = data.bcode;
 	                document.getElementById("fullname").value = data.sido + ' ' + data.sigungu + ' ' + data.bname;
-	                document.getElementById("delivername").value = data.sigungu;
+	                document.getElementById("delivername").value = fullname;
 	                
-	                console.log("delivername : " + delname)
+	                console.log(fullname);
 	            }
 	        }).open();
 	}
@@ -396,6 +429,21 @@
 $("#addimage").on("click", function(){
 	$("#img-uploader").modal("show");
 })
+
+$("#changeimage").on("click", function(){
+	$("#img-uploader").modal("show");
+})
+
+$("#deleteimage").on("click", function(){
+	$("#img-delete").modal("show");
+	
+	$("#cancel").on("click", function(){
+		$("#img-delete").modal("hide");
+	})
+	
+})
+
+
 
 </script>
 
