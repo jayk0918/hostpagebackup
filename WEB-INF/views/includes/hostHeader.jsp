@@ -31,7 +31,7 @@
 		<li><a id = "showReserve" href="${pageContext.request.contextPath}/host/reservemanage">예약관리</a>
 			<div id = "reserve">
 				<ul>
-					<li><a href="${pageContext.request.contextPath}/host/reservemanage">예약내역</a></li>
+					<li><a href="${pageContext.request.contextPath}/host/reservemanage">예약관리</a></li>
 					<li><a href="">정산 및 매출내역</a></li>
 					<li><a href="">리뷰관리</a></li>
 				</ul>
@@ -55,7 +55,7 @@
 <script type = "text/javascript">
 
 $("#showReserve").on("mouseover",function(){
-	$("#reserve").css("display","flex");
+	$("#reserve").css("display","block");
 })
 
 $("#showReserve").on("mouseout",function(){
@@ -63,7 +63,7 @@ $("#showReserve").on("mouseout",function(){
 })
 
 $("#showIntroduce").on("mouseover",function(){
-	$("#introduce").css("display","flex");
+	$("#introduce").css("display","block");
 })
 
 $("#showIntroduce").on("mouseout",function(){
@@ -74,4 +74,29 @@ $("#showIntroduce").on("mouseout",function(){
 </script>
 
 
+<!--  
+$('.header nav ul li').bind("mouseover", function () {
+        var sub = $(this).find('.sub');
+        var sub_li = $(this).find('.sub li a');
 
+        sub.css('display', 'block');
+        sub_li.css('display', 'block');
+        sub.addClass('open');
+    });
+
+    $('.header nav ul li').bind("mouseleave", function () {
+        $('.sub').css('display', 'none');
+        $('.sub li a').css('display', 'none');
+        $('.sub').removeClass('open');
+    });
+
+    $('.header nav ul li ul.sub li').bind("mouseover", function(){
+       $(this).find('a').css('color', '#00bfa5');
+       $(this).find('a').css('font-weight', '600');
+    });
+
+    $('.header nav ul li ul.sub li').bind("mouseleave", function(){
+       $(this).find('a').css('color', '#777');
+       $(this).find('a').css('font-weight', 'normal');
+    });
+-->

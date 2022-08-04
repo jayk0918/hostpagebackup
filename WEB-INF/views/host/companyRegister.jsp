@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/host/hostHeaderFooter.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/host/main.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/host/mypageRegister.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/host/companyRegister.css">
 
 
 
@@ -104,10 +104,12 @@
 						<th>업주 정보</th>
 						<td>
 							<div class="form-layer mb_24">
-								<span class="form-title">이메일</span> <span class="form-body">bootstrapSonofabitch@gmail.com</span>
+								<span class="form-title">이메일</span>
+								<span class="form-body">bootstrapSonofabitch@gmail.com</span>
 							</div>
 							<div class="form-layer mb_24">
-								<span class="form-title">휴대폰 번호</span> <span class="form-body">
+								<span class="form-title">휴대폰 번호</span>
+								<span class="form-body">
 									<div class="select-style small-size">
 										<select name="phone1">
 											<option value="010" selected>010</option>
@@ -117,11 +119,13 @@
 											<option value="018">018</option>
 											<option value="019">019</option>
 										</select>
-									</div> <input class="form-control small-size" type="text" name="phone2"> <input class="form-control small-size" type="text" name="phone3">
+									</div>
+									<input class="form-control small-size" type="text" name="phone2" placeholder="숫자만 입력하세요.">
 								</span>
 							</div>
 							<div class="form-layer mb_24">
-								<span class="form-title">대표 번호</span> <span class="form-body">
+								<span class="form-title">대표 번호</span>
+								<span class="form-body">
 									<div class="select-style small-size">
 										<select name="tell">
 											<option value="02" selected>02</option>
@@ -147,7 +151,8 @@
 											<option value="018">018</option>
 											<option value="019">019</option>
 										</select>
-									</div> <input class="form-control small-size" type="text" name="tel2"> <input class="form-control small-size" type="text" name="tel3">
+									</div>
+									<input class="form-control small-size" type="text" name="tel2" placeholder="숫자만 입력하세요.">
 								</span>
 							</div>
 						</td>
@@ -210,13 +215,6 @@
                                 </span>
                             </div>
                             
-                            <div class="form-layer mb_08">
-                                <span class="form-title">계좌 변경일</span>
-                                <span class="form-body">
-                                    &nbsp;&nbsp;
-                                </span>
-                            </div>
-                            
                             <!-- div class="form-layer mb_08">
                                 <span class="form-title">통장사본</span>
                                 <span class="form-body">
@@ -229,8 +227,8 @@
                             <div class="form-layer mb_08">
                                 <span class="form-title">정산 주기</span>
                                 <span class="form-body label-layer">
-                                    <label for="W"><input id="W" type="radio" disabled="" value="W"> 주정산</label>
-                                    <label for="M"><input id="M" type="radio" disabled="" value="M"> 월정산</label>
+                                    <label for="W"><input id="W" type="radio" disabled="" value="week"> 주정산</label>
+                                    <label for="M"><input id="M" type="radio" disabled="" value="month"> 월정산</label>
                                 </span>
                             </div>
                             
@@ -279,15 +277,10 @@
                             <div id = "jobstyle" class="form-layer mb_24">
                                 <span class="form-title">업태</span>
                                 <label class="checkbox-inline icon-label"><input type="checkbox" value="2" name="b_condition[]" disabled="disabled">숙박</label>
-                                <label class="checkbox-inline icon-label"><input type="checkbox" value="6" name="b_condition[]" checked="checked" disabled="disabled">기타</label>
                                 <label class="checkbox-inline icon-label"><input type="checkbox" value="1" name="b_condition[]" disabled="disabled">음식 및 숙박</label>
                                 <label class="checkbox-inline icon-label"><input type="checkbox" value="3" name="b_condition[]" disabled="disabled">부동산</label>
                                 <label class="checkbox-inline icon-label"><input type="checkbox" value="4" name="b_condition[]" disabled="disabled">음식</label>
                                 <label class="checkbox-inline icon-label"><input type="checkbox" value="5" name="b_condition[]" disabled="disabled">서비스</label>
-                                <label class="checkbox-inline icon-label">
-                                    <input type="checkbox" id="etcCheck" value="7" name="b_condition[]" onclick="isEnableEtcTextBox('etcCheck', 'etcText')" disabled="disabled">
-                                    <input class="form-control small-size" id="etcText" name="etcText" type="text" value="" disabled="disabled">
-                                </label>
                             </div>
 							
 							<br>
@@ -298,7 +291,6 @@
                                 <label class="checkbox-inline icon-label"><input type="checkbox" value="16" name="b_type[]" disabled="disabled">외국인도시민박</label>
                                 <label class="checkbox-inline icon-label"><input type="checkbox" value="13" name="b_type[]" disabled="disabled">게스트하우스</label>
                                 <label class="checkbox-inline icon-label"><input type="checkbox" value="14" name="b_type[]" disabled="disabled">한옥체험</label>
-                                <label class="checkbox-inline icon-label"><input type="checkbox" value="15" name="b_type[]" checked="checked" disabled="disabled">기타</label>
                                 <label class="checkbox-inline icon-label"><input type="checkbox" value="1" name="b_type[]" disabled="disabled">여관</label>
                                 <label class="checkbox-inline icon-label"><input type="checkbox" value="5" name="b_type[]" disabled="disabled">숙박</label>
                                 <label class="checkbox-inline icon-label"><input type="checkbox" value="2" name="b_type[]" disabled="disabled">펜션</label>
@@ -310,10 +302,6 @@
                                 <label class="checkbox-inline icon-label"><input type="checkbox" value="8" name="b_type[]" disabled="disabled">관광호텔</label>
                                 <label class="checkbox-inline icon-label"><input type="checkbox" value="11" name="b_type[]" disabled="disabled">일반여행</label>
                                 <label class="checkbox-inline icon-label"><input type="checkbox" value="10" name="b_type[]" disabled="disabled">무인텔</label>
-                                <label class="checkbox-inline icon-label">
-                                    <input type="checkbox" id="bizEtcCheck" value="17" name="b_type[]" onclick="isEnableEtcTextBox('bizEtcCheck', 'bizEtcText')" disabled="disabled">
-                                    <input class="form-control small-size" id="bizEtcText" name="bizEtcText" type="text" value="" disabled="disabled">
-                                </label>
                             </div>
                             
                             <br>

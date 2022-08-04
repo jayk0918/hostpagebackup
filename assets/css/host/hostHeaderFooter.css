@@ -90,9 +90,8 @@ a:active {
 /********************* 헤더 (nav)*********************/
 #nav{
 	padding-top: 80px;
-	margin-bottom: 100px;
+	margin-bottom: 50px;
     width: 1024px;
-    display: inline-table;
 }
 
 #nav a{
@@ -160,12 +159,6 @@ a:active {
 	transition: 0.4s;
 	overflow: hidden;
 }
-
-
-
-
-
-
 
 
 /* ******************해더(로고  로그인,회원가입)************************** */

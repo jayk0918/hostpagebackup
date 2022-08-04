@@ -121,11 +121,11 @@
 								</th>
 								<td id = "firstline" class="bd_r_none">
 									<div class="form-layer mb_24">
-										<span class="form-title">업체명</span> <span class="form-body"> <input class="form-control normal-size" type="text" name="aname" placeholder="업체명을 입력하세요." value="">
+										<span class="form-title">펜션명</span> <span class="form-body"> <input class="form-control normal-size" type="text" name="aname" placeholder="업체명을 입력하세요." value="">
 										</span>
 									</div>
 									<div class="form-layer mb_24">
-										<span class="form-title">업체 주소</span>
+										<span class="form-title">펜션 주소</span>
 										<!-- BOD-1458 -->
 										<span class="form-body">
 											<input class="form-control normal-size" id="input_roadAddress" type="text" name="address1" readonly placeholder="업체 주소를 입력하세요." value="">
@@ -139,8 +139,11 @@
 									</div>
 									<div class="form-layer-text">
 										<input type="hidden" id = "delivername" value = "">
+										<input type="hidden" id = "postalcode" value = "">
 										<div id = "legalname" class = "order">
-											<input type = "text" readonly value = "법정동 코드: "><input id = "lawcode" type="text" readonly value = ""><input id = "fullname" type="text" readonly value = "">
+											<input type = "text" readonly value = "법정동 코드: ">
+											<input id = "lawcode" type="text" readonly value = "">
+											<input id = "fullname" type="text" readonly value = "">
 										</div>
 									</div>
 								</td>
@@ -316,7 +319,7 @@
 					</table>
 
 					<div class="submit-layer center-block">
-						<button class="btn btn-yeogi btn-submit" type="submit">저장 후 다음 단계</button>
+						<button class="btn btn-yeogi btn-submit" type="submit">저장하기</button>
 					</div>
 				</form>
 			</div>
@@ -426,8 +429,10 @@
 	                document.getElementById("lawcode").value = data.bcode;
 	                document.getElementById("fullname").value = data.sido + ' ' + data.sigungu + ' ' + data.bname;
 	                document.getElementById("delivername").value = fullname;
+	                document.getElementById("postalcode").value = data.zonecode;
 	                
 	                console.log(fullname);
+	                console.log(data.zonecode);
 	            }
 	        }).open();
 	}
@@ -449,7 +454,6 @@ $("#deleteimage").on("click", function(){
 	$("#cancel").on("click", function(){
 		$("#img-delete").modal("hide");
 	})
-	
 })
 
 

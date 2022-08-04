@@ -151,7 +151,7 @@
 					</table>
 
 					<div class="submit-layer center-block">
-						<button class="btn btn-yeogi btn-submit" type="submit">저장 후 다음 단계</button>
+						<button class="btn btn-yeogi btn-submit" type="submit">저장하기</button>
 					</div>
 				</form>
 			</div>

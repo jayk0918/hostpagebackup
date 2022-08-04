@@ -428,39 +428,13 @@ td>div>span>div .room_type{
 	color: #f2114c;
 }
 
-.addpricestyle{
-	float: right;
-	margin-right: -2px;
-	margin-bottom: 15px;
-	
-}
-
-#additionalpeople{
-	margin-top: 10px;
-}
-
-#additionalpeopledivide{
-	width: 150px;
-	margin-left: 20px;
-	float: left;
-}
-
-#additionalpeopleprice{
-	float: right;
-}
-
-#additionalpeopleprice > input{
-	margin-left : 10px;
-	height: 40px;
-	width: 200px;
-}
 
 .resize{
 	margin-top: 0px;
 	margin-left: 40px;
 }
 
-#reserve{
+#reservation{
 	border-right: 1px solid #ddd;
 	border-bottom: 1px solid #ddd;
 }
@@ -480,3 +454,8 @@ td>div>span>div .room_type{
 	margin-bottom: 10px;
 }
 
+.addpricestyle{
+	float: right;
+	margin-right: -2px;
+	margin-bottom: 15px;
+}

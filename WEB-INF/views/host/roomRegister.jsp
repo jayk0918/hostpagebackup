@@ -247,8 +247,8 @@
 							</td>
 						</tr>
 						<tr >
-							<th rowspan="4">
-								요금설정<br>
+							<th rowspan="3">
+								요금 설정<br>
 								<a href="${pageContext.request.contextPath}/host/rules" class="btn_th_link">
 									준/성수기<br>
 									기간 설정
@@ -306,16 +306,6 @@
 													<input type="checkbox" class="NORMAL-sat" onclick="weekOverlapCheck(this)" data-role="week" checked="checked">
 													토
 												</label>
-												
-												<label class="checkbox-inline icon-label">
-													<input type="checkbox" class="NORMAL-ho1" onclick="weekOverlapCheck(this)" data-role="week" checked="checked">
-													공휴일
-												</label>
-												
-												<label class="checkbox-inline icon-label">
-													<input type="checkbox" class="NORMAL-beh" onclick="weekOverlapCheck(this)" data-role="week" checked="checked">
-													공휴일 전날
-												</label>
 											</div>
 											
 											<div class="form-inline">
@@ -367,16 +357,6 @@
 													<input type="checkbox" class="NORMAL-sat" onclick="weekOverlapCheck(this)" data-role="week" checked="checked">
 													토
 												</label>
-												
-												<label class="checkbox-inline icon-label">
-													<input type="checkbox" class="NORMAL-ho1" onclick="weekOverlapCheck(this)" data-role="week" checked="checked">
-													공휴일
-												</label>
-												
-												<label class="checkbox-inline icon-label">
-													<input type="checkbox" class="NORMAL-beh" onclick="weekOverlapCheck(this)" data-role="week" checked="checked">
-													공휴일 전날
-												</label>
 											</div>
 											
 											<div class="form-inline">
@@ -390,7 +370,7 @@
 										</div>
 										
 										<div class="form-layer-text addpricestyle" id="btd_day">
-												<button type="button" class="btn btn-default btn_add_02" data-role="season-NORMAL">+ 요일별 요금 정보 추가</button>
+											<button type="button" class="btn btn-default btn_add_02" data-role="season-NORMAL">+ 요일별 요금 정보 추가</button>
 										</div>
 											
 									</span>
@@ -459,43 +439,7 @@
 							</td>
 						</tr>
 						
-						<tr>
-							<td class="bd_r_none border_bottom">
-								<div class="form-layer">
-									<span class="form-title large">
-										추가인원<br>추가비용<br>
-									</span>
-									
-									<span class="form-body">
-										<!-- 
-										<div class="empty_holiday">
-											객실 기준인원을 초과하는 인원에 대한 추가비용을 설정해주세요.
-										</div>
-										 -->
-										<div id = "additionalpeople">
-											<div id = "additionalpeopledivide" class = "select-style normal-size clearfix">
-												<select>
-													<option value = "adult">성인</option>
-													<option value = "youngsters">아동</option>
-													<option value = "kid">유아</option>
-												</select>
-											</div>
-											<div id = "additionalpeopleprice">
-												<input class = "form-control normal-size" type = "text" placeholder = "금액(숫자만)을 입력해주세요.">
-											</div>
-										</div>
-									</span>
-								</div>
-								
-								<div class="form-layer-text addpricestyle">
-									<button type="button" class="btn btn-default btn_add_02" data-role="season-SUBPEAK">+ 인원 추가비용 추가</button>
-								</div>
-							</td>
-							<td class="bd_r_none border_bottom border_right">
-							</td>
-						</tr>
-						
-						<tr id = "reserve">
+						<tr id = "reservation">
 							<th>
 								예약가능여부
 							</th>

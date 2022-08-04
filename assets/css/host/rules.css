@@ -95,7 +95,8 @@
 }
 
 .table input.normal-size{
-	width: 328px;
+	width: 100px;
+	text-align: center;
 }
 
 .table input.small-size{
@@ -199,10 +200,6 @@ div.select-style.small-size{
 	width: 10px;
 	border-left-style: hidden;
 }
-.table-bordered td{
-	width: 800px;
-}
-
 
 .mb_24{
 	padding-top : 20px;
@@ -298,4 +295,28 @@ hr{
 
 #season> .form-layer> .title-align{
 	margin-left: 5px;
+}
+
+#additionalpeople{
+	margin-top: 10px;
+	margin-left: 20px;
+}
+
+#additionalpeople > div > .form-title{
+	width: 50px;
+}
+
+.addpeoplestyle{
+	float: right;
+	margin-right: -2px;
+	margin-bottom: 15px;
+}
+
+.decrease{
+	width: 300px;
+	overflow: hidden;
+}
+
+.price{
+	display: inline-block;
 }

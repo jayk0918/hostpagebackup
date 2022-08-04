@@ -223,7 +223,51 @@
                    		</div>
                		</td>
                	</tr>
-               	
+				<tr>
+					<th>추가인원<br>추가비용</th>
+					<td class="bd_r_none">
+						<div id = "additionalpeople">
+							<div class = "decrease">
+								<span class="form-title">성인</span>
+								<span class="form-body">
+									<input class="form-control normal-size" type="text" value="">
+								</span>
+								<span class="form-body">
+									 원
+								</span>
+							</div>
+							
+							<div class = "decrease">
+								<span class="form-title">아동</span>
+								<span class="form-body">
+									<input class="form-control normal-size" type="text" value="">
+								</span>
+								<span class="form-body">
+									 원
+								</span>
+							</div>
+							
+							
+							
+							<div class = "decrease">
+								<span class="form-title">유아</span>
+								<span class="form-body">
+									<input class="form-control normal-size" type="text" value="">
+								</span>
+								<span class="form-body">
+									 원
+								</span>
+							</div>
+						</div>
+						<br>
+						
+						<p class = "description">* 성인(만 19세 이상), 아동(만 5세 이상, 만 19세 미만), 유아 (만 5세 미만).</p>
+                   		<p class = "description">* 성인, 아동, 유아의 연령 기준은 사측의 규정을 따릅니다.</p>
+       				</td>
+       				<td class="help-tooltip popover-container">
+               		</td>
+                </tr>
+				
                	<tr>
 					<th>취소 및 <br>환불규정</th>
 					<td class="bd_r_none">

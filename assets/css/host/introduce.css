@@ -322,6 +322,14 @@ textarea{
 	width: 150px;
 }
 
+#lawcode{
+	margin-left: -10px;
+}
+
+#fullname{
+	width: 200px;
+}
+
 #firstline{
 	border-top: 0px;
 }
@@ -333,5 +341,4 @@ textarea{
 .textarea-layer{
 	margin-top: 10px;
 }
-
 
