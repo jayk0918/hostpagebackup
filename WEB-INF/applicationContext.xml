@@ -19,21 +19,24 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.sprin
 	
 	<!-- oracle datasource -->
 	<bean id="oracleDatasource" class="oracle.jdbc.pool.OracleDataSource" destroy-method="close">
-		<property name="URL" value="jdbc:oracle:thin:yangdo_high?TNS_ADMIN=/Users/jaykim0918/Dropbox/Wallet_DB20220511133301" />
-		<property name="user" value="admin" />
-		<property name="password" value="Jayk09180918" />
+		<property name="URL" value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="user" value="system" />
+		<property name="password" value="1234" />
 		<property name="connectionCachingEnabled" value="true" />
 		<qualifier value="main-db" />
 	</bean>
-
+	
 	<!-- MyBatis SqlSessionFactoryBean 설정 -->
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="oracleDatasource" />
-		<property name="configLocation" value="classpath:mybatis/configuration.xml" />
+		<property name="configLocation"
+			value="classpath:mybatis/configuration.xml" />
 	</bean>
-
+	
 	<!-- MyBatis SqlSessionTemplate 설정 -->
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+	<bean id="sqlSession"
+		class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory" />
 	</bean>
 	

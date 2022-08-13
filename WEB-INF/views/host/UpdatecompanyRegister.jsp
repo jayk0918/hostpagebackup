@@ -94,7 +94,7 @@
 			</li>
 		</ul>
 	</div>
-	<form class="form-horizontal" action="${pageContext.request.contextPath}/host/companysave" method="get">
+	<form class="form-horizontal" action="${pageContext.request.contextPath}/host/companyupdate" method="get">
 		<table class="table table-bordered resize">
 			<thead></thead>
 			<tbody>
