@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "HostRules">
+
+<update id = "updateRules" parameterType = "com.javaex.vo.HostRulesVo">
+
+	<![CDATA[
+		update pension
+		set
+			check_in = #{checkin}
+			,check_out = #{checkout}
+			,add_adult_price = #{addAdultPrice}
+			,add_kid_price = #{addKidPrice}
+			,add_baby_price = #{addBabyPrice}
+			,refund_no = #{refundNo}
+		where company_no = 1
+	]]>
+
+</update>
+
+
+<insert id = "insertpeck" parameterType = "com.javaex.vo.HostRulesVo">
+	insert into peck
+	values(SEQ_PECK_NO.nextval, to_date(#{peckStart}, 'MM-DD'), to_date(#{peckEnd}, 'MM-DD'), 1)
+</insert>
+
+<insert id = "insertsubpeck" parameterType = "com.javaex.vo.HostRulesVo">
+	insert into peck
+	values(SEQ_PECK_NO.nextval, to_date(#{subpeckStart}, 'MM-DD'), to_date(#{subpeckEnd}, 'MM-DD'), 2)
+</insert>
+
+  
+<select id = "getpeckNo" resultType = "int">
+	select rn.no
+	from
+	(select no
+	from peck
+	order by no desc) rn
+	where rownum = 1
+</select>
+
+<insert id = "insertPensionPeck" parameterType = "com.javaex.vo.HostRulesVo">
+	insert into p_peck
+	values(seq_p_peck_no.nextval, #{pensionNo}, #{peckNo})
+</insert>
+
+
+</mapper>

@@ -4,7 +4,8 @@
 	<typeAliases>
 	</typeAliases>
 	<mappers>
-		<mapper resource="mybatis/mappers/Hostcompanyreg.xml" />
-		<mapper resource="mybatis/mappers/Hostintroduce.xml" />
+		<mapper resource="mybatis/mappers/HostCompanyreg.xml" />
+		<mapper resource="mybatis/mappers/HostIntroduce.xml" />
+		<mapper resource="mybatis/mappers/HostRules.xml" />
 	</mappers>
 </configuration>

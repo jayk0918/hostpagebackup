@@ -36,7 +36,6 @@ public class HostIntroduceController {
 	@RequestMapping(value="introoptsave", method= {RequestMethod.GET, RequestMethod.POST})
 	public String introroptsave(@ModelAttribute HostIntroduceVo iVo){
 		iService.updateOpt(iVo);
-		System.out.println("업데이트 끝");
 		return "redirect:/host/introregopt";
 	}
 	
