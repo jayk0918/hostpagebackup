@@ -1,40 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace = "HostCompanyreg">
-	<select id = "email" resultType = "com.javaex.vo.HostCompanyregVo">
+	<select id = "email" parameterType = "int" resultType = "String">
 	
 		<![CDATA[
 			select  email
 			from users
-			where no = 3
-			and id = #{id}
+			where no = #{userNo}
 		]]>
 	
 	</select>
 	
 	<insert id = "insertcompany" parameterType = "com.javaex.vo.HostCompanyregVo">
-	
 		<![CDATA[
 			insert into company
-			values(SEQ_COMPANY_NO.nextval, 3, #{companyHp}, #{ceoHp}, #{bankName}, #{accountHolder}, #{account}, #{settlementCycle}, #{taxInvoice}, #{companyName}, #{ceoName}, #{businessLicensenumber}, #{postalCode}, #{companyAddress}, #{detailAddress}, #{homepage}, #{taxInvoiceEmail})
+			(no, user_no, company_hp, ceo_hp, bank_name, account_holder, account, settlement_cycle, tax_invoice, homepage)
+			values
+			(SEQ_COMPANY_NO.nextval, #{userNo}, #{companyHp}, #{ceoHp}, #{bankName}, #{accountHolder}, #{account}, #{settlementCycle}, #{taxInvoice}, #{homepage})
 		]]>
-	
 	</insert>
 	
-	<insert id = "insertBTA" parameterType = "int">
+	<insert id = "insertcompanyTaxInvoice" parameterType = "com.javaex.vo.HostCompanyregVo">
+		<![CDATA[
+			insert into company
+			values(SEQ_COMPANY_NO.nextval, #{userNo}, #{companyHp}, #{ceoHp}, #{bankName}, #{accountHolder}, #{account}, #{settlementCycle}, #{taxInvoice}, #{companyName}, #{ceoName}, #{businessLicensenumber}, #{postalCode}, #{companyAddress}, #{detailAddress}, #{taxInvoiceEmail}, #{homepage})
+		]]>
+	</insert>
+	
+	<select id = "getCompanyNo" resultType = "int">
+		<![CDATA[
+			select rn.no
+			from
+			(select no
+			from company
+			order by no desc) rn
+			where rownum = 1
+		]]>
+	</select>
+	
+	<insert id = "insertBTA" parameterType = "com.javaex.vo.HostCompanyregVo">
 
 		<![CDATA[
 			insert into c_b_type
-			values (seq_cbt_no.nextval, 1, #{insertBTArrays})
+			values (seq_cbt_no.nextval, #{companyNo}, #{businessType})
 		]]>
 	
 	</insert>
 	
-	<insert id = "insertBGA" parameterType = "int">
+	<insert id = "insertBGA" parameterType = "com.javaex.vo.HostCompanyregVo">
 	
 		<![CDATA[
 			insert into c_b_group
-			values (seq_cbg_no.nextval, 1, #{insertBGArrays})
+			values (seq_cbg_no.nextval, #{companyNo}, #{businessGroup})
 		]]>
 		
 	</insert>

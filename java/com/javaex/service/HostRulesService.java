@@ -12,11 +12,15 @@ public class HostRulesService {
 	@Autowired
 	private HostRulesDao rDao;
 	
+	public int getPensionNoBySession(int userNo) {
+		return rDao.getPensionNoBySession(userNo);
+	}
+	
 	public int updateRules(HostRulesVo hVo) {
 		System.out.println("service: " + hVo);
 		
 		HostRulesVo peckVo = new HostRulesVo();
-		peckVo.setPensionNo(1);
+		peckVo.setPensionNo(hVo.getPensionNo());
 		String[] editpeckStart = hVo.getPeckStartArray();
 		String[] editpeckEnd = hVo.getPeckEndArray();
 		String[] editSubpeckStart = hVo.getSubpeckStartArray();
@@ -38,11 +42,16 @@ public class HostRulesService {
 			peckVo.setPeckEnd(newPe);
 			
 			System.out.println("peck : " + peckVo);
-			
+			System.out.println("peckStart : " + peckVo.getPeckStart());
+			System.out.println("peckEnd : " + peckVo.getPeckEnd());
 			rDao.insertPeck(peckVo);
 			
+			System.out.println("insertPeck Ok");
+			
 			int peckNo = rDao.getpeckNo();
+			System.out.println("peckNo : " + peckNo);
 			peckVo.setPeckNo(peckNo);
+			System.out.println("after insert peckVo : " + peckVo);
 			rDao.insertPensionPeck(peckVo);
 		}
 		

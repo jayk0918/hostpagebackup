@@ -27,6 +27,11 @@ public class HostRulesVo {
 	public HostRulesVo() {}
 
 
+	public HostRulesVo(String peckStart, String peckEnd) {
+		this.peckStart = peckStart;
+		this.peckEnd = peckEnd;
+	}
+	
 	public HostRulesVo(int pensionNo, String checkin, String checkout, int addAdultPrice, int addKidPrice,
 			int addBabyPrice, int refundNo, String[] peckStartArray, String[] peckEndArray, String[] subpeckStartArray,
 			String[] subpeckEndArray, String peckStart, String peckEnd, String subpeckStart, String subpeckEnd,

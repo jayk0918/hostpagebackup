@@ -18,7 +18,7 @@
 					</ul>
 					 -->
 				</li>
-				<li><a href=""><img src="${pageContext.request.contextPath}/assets/image/host/logout.png"> 로그아웃</a></li>
+				<li><a href="${pageContext.request.contextPath}/host/logout"><img src="${pageContext.request.contextPath}/assets/image/host/logout.png"> 로그아웃</a></li>
 			</ul>
 		</div>
 	</div>
