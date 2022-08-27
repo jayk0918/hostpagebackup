@@ -19,9 +19,9 @@ public class HostReservationDao {
 		return sqlSession.selectOne("HostIntroduce.getPensionNoBySession");
 	}
 	
-	public List<HostReservationVo> getList(int userNo){
+	public List<HostReservationVo> getList(int pensionNo){
 		System.out.println("dao");
-		List<HostReservationVo> getList = sqlSession.selectList("HostReservation.getList", userNo);
+		List<HostReservationVo> getList = sqlSession.selectList("HostReservation.getList", pensionNo);
 		return getList;
 	}
 	

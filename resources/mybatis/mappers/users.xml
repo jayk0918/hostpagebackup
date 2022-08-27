@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="users">
+
+	<insert id="userJoin" parameterType="com.javaex.vo.UserVo">
+	  	<![CDATA[
+	  		insert into users
+			values(SEQ_USERS_NO.nextval,#{id},#{pw},#{hp},#{nickName},#{email},#{identify})
+	  	]]>
+	</insert>
+
+	<insert id="hostJoin" parameterType="com.javaex.vo.UserVo">
+	  	<![CDATA[
+	  		insert into users
+			values(SEQ_USERS_NO.nextval,#{id},#{pw},#{hp},' ',#{email},#{identify})
+	  	]]>
+	</insert>
+
+	<select id="userLogin" resultType="com.javaex.vo.UserVo" parameterType="com.javaex.vo.UserVo">
+		<![CDATA[
+			select  no
+					,id
+					,pw
+					,nick_name nickName
+	       			,identify
+			from users
+			where id = #{id}
+			and pw = #{pw}
+		]]>
+	</select>
+	
+	<select id="getRoom" resultType="com.javaex.vo.HostRoomsVo" parameterType="int">
+		<![CDATA[
+			select  rownum
+			        ,rn.no
+			from        (select r.no no
+			                    ,u.no uNo
+			        from users u, company p, pension pen, rooms r
+			        where u.no = p.user_no
+			        and p.no = pen.company_no
+			        and pen.no = r.pension_no) rn
+			where rownum = 1
+			and rn.uNo = #{hostNo}
+		]]>
+	</select>
+	
+	<select id="idCheck" resultType="int" parameterType="String">
+		<![CDATA[
+			select count(id)
+			from users
+			where id = #{id}
+		]]>
+	</select>
+	
+	
+	
+	
+
+</mapper>

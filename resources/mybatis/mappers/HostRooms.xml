@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="HostRooms">
+
+	<insert id="roomInsert"
+		parameterType="com.javaex.vo.HostRoomsVo">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			select
+			seq_rooms_no.nextval from dual
+		</selectKey>
+		<![CDATA[
+			insert into rooms
+			values(#{no},#{pensionNo},#{roomName},#{standardPeople},#{maxPeople},#{roomAmenities},#{addInfo},#{reserveAvai})
+		]]>
+	</insert>
+
+	<insert id="roomImgInsert"
+		parameterType="com.javaex.vo.RoomImageVo">
+		<![CDATA[
+			insert into room_image (no,SAVE_NAME,image_path)
+			values(seq_room_image_no.nextval,#{saveName},#{imgPath})		
+		]]>
+	</insert>
+
+	<update id="updateRoomImg" parameterType="int">
+		<![CDATA[
+			update room_image
+			set rooms_no = #{roomNo}
+			where rooms_no is null
+		]]>
+	</update>
+	
+	<insert id="roomPriceInsert"
+		parameterType="com.javaex.vo.PriceVo">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			select
+			seq_prices_no.nextval from dual
+		</selectKey>
+		<![CDATA[
+			insert into prices
+			values(#{no},#{roomNo},#{sortation},#{divide},#{price})
+		]]>
+	</insert>
+
+	<insert id="roomPriceWeekInsert"
+		parameterType="com.javaex.vo.WeekVo">
+		<![CDATA[
+			insert into week
+			values(SEQ_WEEK_NO.nextval,#{priceNo},#{weekName})
+		]]>
+	</insert>
+
+
+	<select id="getRoom" resultType="com.javaex.vo.HostRoomsVo"
+		parameterType="com.javaex.vo.HostRoomsVo">
+		<![CDATA[
+			select  r.no no
+			        ,r.room_name roomName
+			        ,r.standard_people standardPeople
+			        ,r.max_people maxPeople
+			        ,r.room_amenities roomAmenities
+			        ,r.add_info addInfo
+			        ,r.reserve_avai reserveAvai
+			        ,c.user_no userNo
+			from rooms r, pension p , company c
+			where c.no = p.company_no
+			and p.no = r.pension_no
+			and c.user_no = #{userNo}
+			and r.no = #{no}
+		]]>
+	</select>
+
+	<select id="roomNoList" resultType="com.javaex.vo.HostRoomsVo"
+		parameterType="int">
+		<![CDATA[
+			select  r.no  
+			        ,r.room_name roomName
+			from rooms r,pension p  , company c
+			where c.no = p.company_no
+			and p.no = r.pension_no
+			and c.user_no = #{userNo}
+		]]>
+	</select>
+	<select id="getRoomImg" resultType="com.javaex.vo.RoomImageVo"> 
+		<![CDATA[ 
+			select  no
+					,save_name saveName
+			        ,image_path imgPath
+			from room_image
+			where rooms_no is null
+		]]> 
+	</select> 
+	
+	<select id="getRoomImg2" resultType="com.javaex.vo.RoomImageVo" parameterType="int"> 
+		<![CDATA[ 
+			select  no
+					,save_name saveName
+			        ,image_path imgPath
+			from room_image
+			where rooms_no = #{roomNo}
+		]]> 
+	</select> 
+	
+	<delete id="roomImgDelete" parameterType="int">
+		<![CDATA[
+			delete from room_image
+			where no = #{no}
+		]]>
+	</delete>
+	
+	<select id="getRoomPrices" resultType="com.javaex.vo.PriceVo"
+		parameterType="int">
+		<![CDATA[
+			select  no
+			        ,room_no
+			        ,sortation
+			        ,price
+			from prices
+			where room_no = #{roomNo}
+		]]>
+	</select>
+
+	<select id="getgb1Week" resultType="map" parameterType="int">
+			<![CDATA[
+				select  w.no NO
+				        ,w.name WEEKNAME
+				        ,w.price_no PRICE_NO
+				        ,p.price PRICE
+				        ,p.sortation SORTATION
+				        ,p.divide DIVIDE
+				from week w , prices p
+				where p.no = w.price_no
+				and p.room_no = #{roomNo}
+				and p.sortation = 3
+				and p.divide = 1
+			]]>
+	</select>
+
+	<select id="getgb2Week" resultType="map" parameterType="int">
+			<![CDATA[
+				select  w.no NO
+				        ,w.name WEEKNAME
+				        ,w.price_no PRICE_NO
+				        ,p.price PRICE
+				        ,p.sortation SORTATION
+				        ,p.divide DIVIDE
+				from week w , prices p
+				where p.no = w.price_no
+				and p.room_no = #{roomNo}
+				and p.sortation = 3
+				and p.divide = 2
+			]]>
+	</select>
+
+	<select id="getjs1Week" resultType="map" parameterType="int">
+			<![CDATA[
+				select  w.no NO
+				        ,w.name WEEKNAME
+				        ,w.price_no PRICE_NO
+				        ,p.price PRICE
+				        ,p.sortation SORTATION
+				        ,p.divide DIVIDE
+				from week w , prices p
+				where p.no = w.price_no
+				and p.room_no = #{roomNo}
+				and p.sortation = 2
+				and p.divide = 1
+			]]>
+	</select>
+	<select id="getjs2Week" resultType="map" parameterType="int">
+			<![CDATA[
+				select  w.no NO
+				        ,w.name WEEKNAME
+				        ,w.price_no PRICE_NO
+				        ,p.price PRICE
+				        ,p.sortation SORTATION
+				        ,p.divide DIVIDE
+				from week w , prices p
+				where p.no = w.price_no
+				and p.room_no = #{roomNo}
+				and p.sortation = 2
+				and p.divide = 2
+			]]>
+	</select>
+	<select id="gets1Week" resultType="map" parameterType="int">
+			<![CDATA[
+				select  w.no NO
+				        ,w.name WEEKNAME
+				        ,w.price_no PRICE_NO
+				        ,p.price PRICE
+				        ,p.sortation SORTATION
+				        ,p.divide DIVIDE
+				from week w , prices p
+				where p.no = w.price_no
+				and p.room_no = #{roomNo}
+				and p.sortation = 1
+				and p.divide = 1
+			]]>
+	</select>
+	<select id="gets2Week" resultType="map" parameterType="int">
+			<![CDATA[
+				select  w.no NO
+				        ,w.name WEEKNAME
+				        ,w.price_no PRICE_NO
+				        ,p.price PRICE
+				        ,p.sortation SORTATION
+				        ,p.divide DIVIDE
+				from week w , prices p
+				where p.no = w.price_no
+				and p.room_no = #{roomNo}
+				and p.sortation = 1
+				and p.divide = 2
+			]]>
+	</select>
+</mapper>
