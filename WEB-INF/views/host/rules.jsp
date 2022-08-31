@@ -112,13 +112,13 @@
 			<tbody>
 				<tr>
 					<th>이용시간</th>
-					<td id = "usetime" class="bd_r_none">
+					<td id = "usetime" class="bd_r_none" colspan = "2">
 						<div class="form-layer mb_24">
 							<span id = "design" class="form-title chk">체크인 가능시간</span>
 							<span class="form-body">
 								<div class="select-style middle-size">
 									<select name="checkin">
-										<option value="13:00" selected="">오후 01:00</option>
+										<option value="13:00" selected>오후 01:00</option>
 										<option value="14:00">오후 02:00</option>
 										<option value="15:00">오후 03:00</option>
 										<option value="16:00">오후 04:00</option>
@@ -136,7 +136,7 @@
                         	<span class="form-body">
                         		<div class="select-style middle-size">
                         			<select name="checkout">
-                        				<option value="10:00" selected="">오전 10:00</option>
+                        				<option value="10:00" selected>오전 10:00</option>
                         				<option value="11:00">오전 11:00</option>
                         				<option value="12:00">오후 12:00</option>
                         				<option value="13:00">오후 01:00</option>
@@ -149,30 +149,21 @@
               				</span>
            				</div>
        				</td>
-       				<td class="help-tooltip popover-container">
-                            <!-- BOD-1441
-                            <a href="javascript:void(0)" data-toggle="popover"><img src="/image/host/asset/icn_tooltip_16x16.png" /></a>
-                            <div class="hide">
-                                <span><img src="/image/host/tooltips/detail/img_tooltip05.png" /></span>
-                            </div>
-                            -->
-                    </td>
                 </tr>
                 
                 <tr id="season">
                 	<th>성수기 설정</th>
                 	
-                	<td class="bd_r_none">
+                	<td class="bd_r_none" colspan="2">
                 		<div class="form-layer">
                 			<span class="form-title text-center title_align">준 성수기</span>
                 			<span class="form-body">
                 				<div class="subpeck-item form-inline mb_24">
-									<input class="form-control middle-size datepicker" name = "subpeckStartArray" type="text" readonly="readonly">
+									<input class="form-control middle-size datepicker" name = "subpeckStartArray" type="text" readonly="readonly" value = "">
 									<span class="range"> ~ </span>
-									<input class="form-control middle-size datepicker" name = "subpeckEndArray" type="text" readonly="readonly">
+									<input class="form-control middle-size datepicker" name = "subpeckEndArray" type="text" readonly="readonly" value = "">
 									<button type="button" class="btn btn-yeogi remove-layer" data-role="remove-subpeck">삭제</button>
 								</div>
-								
 								<div class="form form-subpeck">
 									<div class="subpeck-item form-inline mb_24 hide">
 										<input class="form-control middle-size datepicker plussubpeckstart" type="text" readonly="readonly">
@@ -195,9 +186,9 @@
                         	<span class="form-title text-center title_align">성수기</span>
                             <span class="form-body">
                             	<div class="peck-item form-inline mb_24">
-                            		<input class="form-control middle-size datepicker" name = "peckStartArray" type="text" readonly="readonly">
+                            		<input class="form-control middle-size datepicker" name = "peckStartArray" type="text" readonly="readonly" value = "">
                             		<span class="range"> ~ </span>
-                            		<input class="form-control middle-size datepicker" name = "peckEndArray" type="text" readonly="readonly">
+                            		<input class="form-control middle-size datepicker" name = "peckEndArray" type="text" readonly="readonly" value = "">
                             		<button type="button" class="btn btn-yeogi remove-layer" data-role="remove-peck">삭제</button>
                            		</div>
 
@@ -216,13 +207,6 @@
                             <button type="button" class="btn btn-default" data-role="add-peck">+ 추가</button>
                         </div>
                    	</td>
-                   	
-                    <td id = "qmark" class="help-tooltip popover-container">
-                    	<a href="javascript:void(0)" data-toggle="popover" data-original-title="" title=""><img src="${pageContext.request.contextPath}/assets/image/host/tooltip.png"></a>
-                    	<div class="hide">
-                    		<span><img src="${pageContext.request.contextPath}/assets/image/host/tooltip.png"></span>
-                   		</div>
-               		</td>
                	</tr>
 				<tr>
 					<th>추가인원<br>추가비용</th>
@@ -361,9 +345,6 @@
                         </div>
                         
        				</td>
-       				
-       				<td id = "qmark2" class="help-tooltip popover-container">
-               		</td>
                 </tr>
        		</tbody>
         </table>

@@ -4,7 +4,9 @@ import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,25 +28,15 @@ public class HostIntroduceService {
 	}
 	
 	public int insertPension(HostIntroduceVo iVo) {
-		
-		/*
-		String editName = iVo.getLawName();
-		
-		String[] editArray = editName.split(" ");
-		
-		if(editArray[0].equals("세종특별자치시")) {
-			iVo.setLawName(editArray[2]);
-		}else {
-			iVo.setLawName(editArray[1]);
-		}
-		*/
-		
+
 		iDao.insertPension(iVo);
 		int pensionNo = iDao.getPensionNo();
 		iVo.setPensionNo(pensionNo);
 		
 		iDao.insertsido(iVo);
 		iDao.insertgugun(iVo);
+		
+		iDao.updatePensionImg(pensionNo);
 		
 		HostIntroduceVo arrayVo = new HostIntroduceVo();
 		arrayVo.setPensionNo(pensionNo);
@@ -108,9 +100,6 @@ public class HostIntroduceService {
 				pensionImgVo.setSaveName(saveName);
 				pensionImgVo.setImagePath(filePath);
 				
-				
-				
-				
 				//다오--DB저장
 				
 				iDao.PensionImgInsert(pensionImgVo);
@@ -130,13 +119,28 @@ public class HostIntroduceService {
 				
 			}
 		}
-
 		
 		List<PensionImageVo> piList= iDao.getPensionImg();
-		
-		
 		return piList;
 	}
+	
+	public Map<String, Object> getPensionInfo(int pensionNo){
+		Map<String, Object> pMap = new HashMap<>();
+		
+		HostIntroduceVo hVo = iDao.getPensionInfo(pensionNo);
+		List<HostIntroduceVo> amen = iDao.getAmenities(pensionNo);
+		List<HostIntroduceVo> pubs = iDao.getPublics(pensionNo);
+		
+		pMap.put("hVo", hVo);
+		pMap.put("amen", amen);
+		pMap.put("pubs", pubs);
+
+		
+		return pMap;
+	}
+	
+	
+	
 	
 	
 }

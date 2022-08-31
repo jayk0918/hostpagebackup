@@ -1,5 +1,7 @@
 package com.javaex.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,32 +31,40 @@ public class HostCompanyregController {
 		String email = cregService.getEmail(userNo);
 		cVo.setEmail(email);
 		model.addAttribute("cVo", cVo);
-		return "/host/companyRegister";
+		
+		int companyNo = cregService.getCompanyNoBySession(userNo);
+		
+		if(companyNo != 0) {
+			return "redirect:/host/updatecompanyreg";
+		}else {
+			return "/host/companyRegister";
+		}
+		
 	}
 
 	@RequestMapping(value="companysave", method = {RequestMethod.GET, RequestMethod.POST})
 	public String companysave(HttpSession session, @ModelAttribute HostCompanyregVo cVo) {
-		int userNo = (Integer) session.getAttribute("userNo");
+		UserVo uVo = (UserVo) session.getAttribute("authUser");
+		int userNo = uVo.getNo();
 		cVo.setUserNo(userNo);
 		cregService.insertCompany(cVo);
 		return "/host/introduce";
 	}
-	/*
-	@RequestMapping(value="updatecompany", method = {RequestMethod.GET, RequestMethod.POST})
-	public String updatecompany(Model model, String id) {
+	
+	@RequestMapping(value="updatecompanyreg", method = {RequestMethod.GET, RequestMethod.POST})
+	public String updatecompanyreg(HttpSession session, Model model, @ModelAttribute HostCompanyregVo cVo) {
+		UserVo uVo = (UserVo) session.getAttribute("authUser");
+		int userNo = uVo.getNo();
+		String email = cregService.getEmail(userNo);
+		Map<String, Object> cMap = cregService.getCompanyinfo(userNo, email);
+		model.addAttribute("cMap", cMap);
 		
-		id = "bb";
-		String email = cregService.getEmail(id);
-		HostCompanyregVo cVo = new HostCompanyregVo();
-		cVo.setEmail(email);
-		model.addAttribute("cVo", cVo);
 		return "/host/UpdatecompanyRegister";
 	}
+	
 	
 	@RequestMapping(value="updatesave", method = {RequestMethod.GET, RequestMethod.POST})
 	public String updatesave(@ModelAttribute HostCompanyregVo cVo) {
 		return "redirect:/host/updatecompany";
 	}
-	*/
-	
 }

@@ -33,7 +33,14 @@
 		<ul>
 			<li class = "imgs">
 				<a href="${pageContext.request.contextPath}/host/companyreg">
-					<span><img src="${pageContext.request.contextPath}/assets/image/host/mypage.png" class = "active"></span>
+					<c:choose>
+						<c:when test = "${companyNo == 0}">
+							<span><img src="${pageContext.request.contextPath}/assets/image/host/mypage.png" class = "active"></span>
+						</c:when>
+						<c:otherwise>
+							<span><img src="${pageContext.request.contextPath}/assets/image/host/mypage.png"></span>
+						</c:otherwise>
+					</c:choose>
 					<span>업체 등록</span>
 				</a>
 			</li>
@@ -48,7 +55,14 @@
 			</li>
 			<li class = "imgs">
 				<a href="${pageContext.request.contextPath}/host/introreg">
-					<span><img src="${pageContext.request.contextPath}/assets/image/host/introduce.png"></span>
+					<c:choose>
+						<c:when test = "${pensionNo == 0}">
+							<span><img src="${pageContext.request.contextPath}/assets/image/host/introduce.png" class = "active"></span>
+						</c:when>
+						<c:otherwise>
+							<span><img src="${pageContext.request.contextPath}/assets/image/host/introduce.png"></span>
+						</c:otherwise>
+					</c:choose>
 					<span>소개작성(필수)</span>
 				</a>
 			</li>
@@ -63,7 +77,14 @@
 			</li>
 			<li class = "imgs">
 				<a href="${pageContext.request.contextPath}/host/introregopt">
-					<span><img src="${pageContext.request.contextPath}/assets/image/host/introduce.png"></span>
+					<c:choose>
+						<c:when test = "${pensionNo != 0 && introduce2 != 1}">
+							<span><img src="${pageContext.request.contextPath}/assets/image/host/introduce.png" class = "actice"></span>
+						</c:when>
+						<c:otherwise>
+							<span><img src="${pageContext.request.contextPath}/assets/image/host/introduce.png"></span>
+						</c:otherwise>
+					</c:choose>
 					<span>소개작성(선택)</span>
 				</a>
 			</li>
@@ -78,7 +99,14 @@
 			</li>
 			<li class = "imgs">
 				<a href="${pageContext.request.contextPath}/host/rules">
-					<span><img src="${pageContext.request.contextPath}/assets/image/host/rules.png"></span>
+					<c:choose>
+						<c:when test = "${introduce2 == 1}">
+							<span><img src="${pageContext.request.contextPath}/assets/image/host/rules.png" class = "active"></span>
+						</c:when>
+						<c:otherwise>
+							<span><img src="${pageContext.request.contextPath}/assets/image/host/rules.png"></span>
+						</c:otherwise>
+					</c:choose>
 					<span>이용규칙 관리</span>
 				</a>
 			</li>
@@ -93,7 +121,14 @@
 			</li>
 			<li class = "imgs">
 				<a href="${pageContext.request.contextPath}/host/roomreg">
-					<span><img src="${pageContext.request.contextPath}/assets/image/host/room.png"></span>
+					<c:choose>
+						<c:when test = "${rules == 1}">
+							<span><img src="${pageContext.request.contextPath}/assets/image/host/room.png" class = "actice"></span>
+						</c:when>
+						<c:otherwise>
+							<span><img src="${pageContext.request.contextPath}/assets/image/host/room.png"></span>
+						</c:otherwise>
+					</c:choose>
 					<span>객실 관리</span>
 				</a>
 			</li>
@@ -163,4 +198,5 @@
 <!-- footer -->
 
 </body>
+
 </html>

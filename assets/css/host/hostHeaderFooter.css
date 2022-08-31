@@ -112,14 +112,17 @@ a:active {
 	color : rgba(0,0,0,0.56);
 }
 
+
 .sub{
 	margin-top: 20px;
-	width: auto;
-	position: relative;
+	margin-left: 50px;
+	width: 150px;
+	position: absolute;
 	font-size : 16px;
 	text-align : center;
 	background-color: white;
 	border: 1px solid #aaa;
+	border-radius : 4px;
 	box-shadow: -1px 1px 2px #aaa;
 	z-index: 1000;
 }
@@ -206,7 +209,7 @@ footer {
 	height: 220px;
 	font-size: 13px;
 	line-height: 20px;
-	color: rgba(0, 0, 0, 0.38);
+	color: white;
 }
 
 footer .align {
@@ -259,7 +262,7 @@ footer .link li span {
 
 footer .link li a {
 	display: inline-block;
-	color: gray;
+	color: white;
 }
 
 footer p {

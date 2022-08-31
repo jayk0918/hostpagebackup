@@ -1,5 +1,9 @@
 package com.javaex.service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -65,6 +69,45 @@ public class HostCompanyregService {
 		
 		return 1;
 	}
+	
+	public int getCompanyNoBySession(int userNo) {
+		return cregDao.getCompanyNoBySession(userNo);
+	}
+	
+	public Map<String, Object> getCompanyinfo(int userNo, String email) {
 		
+		Map<String, Object> cMap = new HashMap<>();
+		
+		HostCompanyregVo oldCompany = cregDao.getCompanyinfo(userNo);
+		oldCompany.setEmail(email);
+		
+		String[] phoneSplit = oldCompany.getCeoHp().split("-");
+		String[] companySplit = oldCompany.getCompanyHp().split("-");
+		
+		System.out.println(phoneSplit[0] + "+" + phoneSplit[1] + "+" +  phoneSplit[2]);
+		oldCompany.setPhone1(phoneSplit[0]);
+		oldCompany.setPhone2(phoneSplit[1]);
+		oldCompany.setPhone3(phoneSplit[2]);
+		oldCompany.setTel1(companySplit[0]);
+		oldCompany.setTel2(companySplit[1]);
+		oldCompany.setTel3(companySplit[2]);
+		
+		int companyNo = cregDao.getCompanyNoBySession(userNo);
+		System.out.println("list service : " + companyNo);
+		
+		List<HostCompanyregVo> btype = cregDao.getBusinesstype(companyNo);
+		List<HostCompanyregVo> bgroup = cregDao.getBusinessgroup(companyNo);
+		
+		System.out.println(btype);
+		System.out.println(bgroup);
+		
+		cMap.put("cVo", oldCompany);
+		cMap.put("btype", btype);
+		cMap.put("bgroup", bgroup);
+		
+		return cMap;
+	}
+	
+	
 	
 }

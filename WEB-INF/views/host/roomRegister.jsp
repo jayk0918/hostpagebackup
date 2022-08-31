@@ -173,7 +173,7 @@
 						<tr>
 							<th>객실 이미지<br>(최대 15장)
 							</th>
-							<td class="bd_r_none">
+							<td class="bd_r_none" colspan="2">
 								<div class="form-layer mb_24">
 									<p class="order text-normal">* 객실의 전반적인 이미지를 업로드 해주시기 바랍니다.</p>
 									<p class="order text-normal">* 이미지 교체를 원하시면 "변경"을 선택하시고 삭제를 원하시면 우측 "삭제"를 선택하시기 바랍니다.</p>
@@ -202,9 +202,6 @@
 									<button id="addimage" type="button" class="btn btn-default btn_add">+ 이미지 추가</button>
 								</div>
 							</td>
-							<td class="border_right"><a href="javascript:void(0)" data-toggle="popover" data-original-title="" title=""> <img id="tooltip"
-									src="${pageContext.request.contextPath}/assets/image/host/tooltip.png">
-							</a></td>
 						</tr>
 
 						<tr>
