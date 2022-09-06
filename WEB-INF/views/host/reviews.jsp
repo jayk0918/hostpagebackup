@@ -73,13 +73,15 @@
 			                        <span id="roomName">${rList.roomName} 객실 이용</span>
 			                        <span> | ${rList.guestName}</span>
 			                    </div>
-			                    <span id="reviewContent">${rList.guestContent}</span>                
-			                    <div id="roomImg">
-			                        <ul>
-			                            <li><img src="${rList.image1}"></li>
-			                            <li><img src="${rList.image2}"></li>
-			                        </ul>
-			                    </div>
+			                    <span id="reviewContent">${rList.guestContent}</span>
+			                    <c:if test = "${rList.image1 && rList.image2 != null}">
+				                    <div id="roomImg">
+				                        <ul>
+				                            <li><img src="${rList.image1}"></li>
+				                            <li><img src="${rList.image2}"></li>
+				                        </ul>
+				                    </div>
+			                    </c:if>              
 			                    <span id="guestRegDate">${rList.guestRegdate}</span>
 			                    <c:choose>
 		                    		<c:when test = "${rList.replyNo != null && rList.hostContent != null && rList.hostRegdate != null}">
@@ -106,9 +108,9 @@
 										<div class = "addreplyarea">
 											<input type = "hidden" value = "${rList.reviewNo}">
 											<button type = "button" class = "btn addreply"> + 답글달기</button>
-											<div class = "reply">
+											<div class = "writereply">
 												<textarea class = "form-control"></textarea>
-												<button class = "btn cancel" type = "button">취소</button>
+												<button class = "btn replycancel" type = "button">취소</button>
 												<button class = "btn btn-primary sendreply" type = "button">등록</button>
 											</div>
 										</div>
@@ -144,8 +146,18 @@
 
 <script type ="text/javascript">
 
+$(document).ready(function(){
+	$('.writereply').css("display", "none");
+});
+
 $(".addreplyarea").on("click", function(){
-	$(".reply").css("display", "block");
+	$(this).children(".writereply").css("display", "block");
+});
+
+$(".replycancel").on("click", function(){
+	console.log($(this).parent())
+	$(this).parent().removeAttr("style");
+	$(this).parent().css("display", "hidden");
 });
 
 $(".editreply").on("click", function(){
@@ -213,16 +225,11 @@ $(".sendeditreply").on("click", function(){
 });
 
 
-
-$(".cancel").on("click", function(){
-	$(".reply").css("display", "none");
-})
-
 $(".editcancel").on("click", function(){
 	$(this).parent(".replyedit").css("display", "none");
 	$(this).parent().siblings("#ceoContainer").css("display", "flex");
 	$(this).parent().siblings(".editreply").css("display", "block");
-})
+});
 
 
 </script>
