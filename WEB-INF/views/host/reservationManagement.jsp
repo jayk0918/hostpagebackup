@@ -321,7 +321,7 @@ document.addEventListener('DOMContentLoaded', function() {
         					var point = (result.totalPrice) * 0.01;
         					console.log(point);
         					var pVo = {
-        							reserveNo: result.reservationNo,ㅌㅃ
+        							reserveNo: result.reservationNo,
         							point: point
         						};
         					
