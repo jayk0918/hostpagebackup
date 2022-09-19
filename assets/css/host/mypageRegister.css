@@ -175,8 +175,12 @@ div.select-style.small-size{
 	font-weight: 500;
 }
 
+.icon-label:first-of-type{
+	margin-left: 10px;
+}
+
 .checkbox-inline+.checkbox-inline{
-	margin-left: 0px;
+	margin-left: 10px;
 }
 
 .icon-label{
