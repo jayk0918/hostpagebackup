@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sale">
+
+
+
+	<select id="getReservation" parameterType="int" resultType="Map">
+		<![CDATA[
+			select  r.no NO
+			        ,ro.no ROOMNO
+			        ,r.user_no  USERNO
+			        ,r.name RNAME 
+			        ,REGEXP_REPLACE(hp, '(.{3})(.+)(.{4})', '\1-\2-\3') RHP
+			        ,To_char(r.check_in ,'YYYY-MM-DD') CHECKIN 
+			        ,TO_CHAR(TO_DATE(r.check_in, 'YYYY-MM-DD'), 'DY') AS CHECKINDAY
+			        ,To_char(r.check_out ,'YYYY-MM-DD') CHECKOUT
+			        ,TO_CHAR(TO_DATE(r.check_out, 'YYYY-MM-DD'), 'DY') AS CHECKOUTDAY
+			        ,p.check_in CHECKINTIME
+			        ,p.check_out CHECKOUTTIME
+			        ,ro.room_name
+			        ,p.name PNAME
+			        ,ro.standard_people
+			        ,ro.max_people
+			        ,p.refund_no
+			        ,r.adult 
+			        ,r.kid 
+			        ,r.baby 
+			        ,r.total_price 
+			        ,r.status
+			        ,pensione.save_name
+			        ,r.reg_date
+			        ,r.trans_price
+			from reservations r , rooms ro , pension p ,(select rownum
+			                                                    ,rn.save_name
+			                                                    ,rn.pension_no
+			                                            from(select 
+			                                                    save_name
+			                                                    ,pension_no
+			                                            from pension_image
+			                                            order by no asc) rn) pensionE
+			where r.room_no = ro.no
+			and p.no = ro.pension_no
+			and p.no = pensione.pension_no
+			and r.no = #{no}
+			and rownum = 1
+		]]>
+	</select>
+
+	
+	<update id="yangdoUpdate" parameterType="com.javaex.vo.ReservationVo">
+		<![CDATA[
+			update reservations
+			set status = #{Status}
+				,trans_price = #{trans_Price}
+			where no = #{no}
+		]]>
+	</update>
+	
+</mapper>

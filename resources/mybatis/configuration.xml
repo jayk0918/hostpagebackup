@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	<typeAliases>
-	</typeAliases>
+	
 	<mappers>
+		<mapper resource="mybatis/mappers/sale.xml" />
+		<mapper resource="mybatis/mappers/detail.xml" />
+		<mapper resource="mybatis/mappers/repay.xml" />
+		<mapper resource="mybatis/mappers/points.xml" />
+		<mapper resource="mybatis/mappers/my.xml" />
+		<!-- <mapper resource="mybatis/mappers/Hostcompanyreg.xml" /> -->
+
+		<mapper resource="mybatis/mappers/users.xml" />
+		<mapper resource="mybatis/mappers/mainList.xml" />
+
 		<mapper resource="mybatis/mappers/HostCompanyreg.xml" />
 		<mapper resource="mybatis/mappers/HostIntroduce.xml" />
+		<mapper resource="mybatis/mappers/HostRooms.xml" />
 		<mapper resource="mybatis/mappers/HostRules.xml" />
 		<mapper resource="mybatis/mappers/HostReservation.xml" />
 		<mapper resource="mybatis/mappers/HostReviews.xml" />
-		<mapper resource="mybatis/mappers/HostRooms.xml" />
-		<mapper resource="mybatis/mappers/HostMain.xml" />
 		<mapper resource="mybatis/mappers/HostSales.xml" />
-		<mapper resource="mybatis/mappers/users.xml" />
+		<mapper resource="mybatis/mappers/HostMain.xml" />
 	</mappers>
-</configuration>
+</configuration>	

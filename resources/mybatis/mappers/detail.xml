@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="detail">
+	
+	<!-- 펜션정보 가져오기 -->
+	<select id="select" resultType="map" parameterType="int">
+		<![CDATA[
+			select  p.no
+			        ,p.company_no
+			        ,p.name
+			        ,p.postal_code
+			        ,p.address
+			        ,p.detail_address
+			        ,p.law_code
+			        ,p.law_name
+			        ,p.visit_road1
+			        ,p.visit_road2
+			        ,p.visit_road3
+			        ,p.area_info1
+			        ,p.area_info2
+			        ,p.area_info3
+			        ,p.rules
+			        ,p.live_pay livePay
+			        ,p.parking_info
+			        ,p.etc
+			        ,p.check_in
+			        ,p.check_out
+			        ,p.add_adult_price
+			        ,p.add_kid_price
+			        ,p.add_baby_price
+			        ,p.refund_no
+			from    pension p
+			where   p.no = #{pensionNo}
+		]]>
+	</select>
+	
+	<!-- 이용자 평점 및 총 리뷰개수 -->
+	<select id = "totalReview" resultType="map" parameterType="int">
+		<![CDATA[
+			select  to_char(avg(re.stars), '0.0') avgStars
+			        ,count(re.review_no) rCount
+			from    reviews re, reservations res, rooms r
+			where   re.no = res.no
+            and     r.no = res.room_no
+			and     r.pension_no = #{pensionNo}
+		]]>
+	</select>
+	
+	<!-- 업주 리뷰개수 -->
+	<select id = "hostReview" resultType="map" parameterType="int">
+		<![CDATA[
+			select  count(rep.reply_no) repCount
+			from    reviews re, replys rep, reservations res, rooms ro
+			where   re.review_no = rep.review_no
+            and     re.no = res.no
+            and     res.room_no = ro.no
+            and     ro.pension_no = #{pensionNo}
+		]]>
+	</select>
+	
+	<!-- 
+		select  count(rep.reply_no) repCount
+			from    reviews re, replys rep, users u, company c, pension p
+			where   re.review_no = rep.review_no
+			and     rep.owner = u.no
+			and     u.no = c.user_no
+			and     c.no = p.no
+			and     p.no = #{pensionNo}
+	 -->
+	
+	
+	<!-- 이미지 리스트 -->
+	<select id="selectList" resultType="map" parameterType="map">
+		<![CDATA[
+				select  ort.rn RN
+				        ,ort.no
+				        ,ort.pension_no
+				        ,ort.SAVE_NAME
+				        
+				from    (select  rownum rn
+				                 ,ot.no
+				                 ,ot.pension_no
+				                 ,ot.SAVE_NAME
+				        
+				         from    (select  p.no
+				                          ,p.pension_no
+				                          ,p.SAVE_NAME
+				        
+				                  from    pension_image p
+				                  where   p.pension_no = #{pensionNo}
+				                  order by no asc) ot
+				         )ort
+				where   ort.rn >= #{startRnum}
+				and     ort.rn <= #{endRnum}
+		]]>
+	</select>
+	
+	<!-- 전체 사진 갯수 구하기 -->
+	<select id="selectTotalCnt" resultType="int" parameterType="int">
+		<![CDATA[
+			select  count(*) count
+			from    pension_image
+			where	pension_no = #{pensionNo}
+		]]>
+	</select>
+	
+	<!-- 편의시설 리스트 -->
+	<select id="pAmenList" resultType="map" parameterType="int">
+		<![CDATA[
+			select  sAmen.no
+					,sAmen.name
+					,sAmen.ICON_PATH
+			from    pension p, p_amenities pAmen, s_amenities sAmen
+			where   p.no = pAmen.pension_no
+			and     pAmen.s_amenities_no = sAmen.no
+			and     p.no = #{pensionNo}
+		]]>
+	</select>
+	
+	<!-- 공용시설 리스트 -->
+	<select id="pPubList" resultType="map" parameterType="int">
+		<![CDATA[
+			select  sPub.no
+					,sPub.name
+					,sPub.ICON_PATH
+			from    pension p, p_public pPub, s_public sPub
+			where   p.no = pPub.pension_no
+			and     pPub.s_public_no = sPub.no
+			and     p.no = #{pensionNo}
+		]]>
+	</select>
+	
+	
+	<!-- 객실 방 번호 리스트 가져오기 -->
+	<select id="roomNo" resultType="map" parameterType="int">
+		<![CDATA[
+			select  res.room_no
+			from    reservations res, rooms r, pension p
+			where   res.room_no = r.no
+			and     r.pension_no = p.no
+			and     status = 3
+			or      status = 6
+			and     p.no = #{pensionNo}
+			group by res.room_no
+			order by res.room_no asc
+		]]>
+	</select>
+	
+	<!-- 날짜에 따른 객실정보 가져오기(예약 후, 양도, 예약 전) -->
+	<select id="roomList" parameterType="map" resultType="map">
+		<![CDATA[
+			select        ro.no NO
+			              ,ro.pension_no PENSION_NO
+			              ,ro.room_name ROOM_NAME
+			              ,ro.standard_people STANDARD_PEOPLE
+			              ,ro.max_people MAX_PEOPLE
+			              ,ro.add_info ADD_INFO
+			              ,r.no RESERVATIONSNO
+			              ,r.user_no USER_NO
+			              ,r.name NAME
+			              ,r.check_in CHECK_IN
+			              ,r.check_out CHECK_OUT
+			              ,r.adult ADULT
+			              ,r.kid KID
+			              ,r.baby BABY
+			              ,to_char(r.total_price, 'FM999,999') TOTAL_PRICE
+			              ,nvl(r.status,'0') STATUS
+			              ,to_char(r.trans_price, 'FM999,999') TRANS_PRICE
+			              ,to_char(p.price*TRUNC(TO_DATE(#{datepicker2}, 'YYYY-MM-DD')- TO_DATE(#{datepicker}, 'YYYY-MM-DD')), 'FM999,999,999') PRICE
+			              ,w.name WEEK_NAME
+			              ,ri.SAVE_NAME
+			              ,to_char(pe.add_adult_price, 'FM99,999') ADULT_PRICE
+			              ,to_char(pe.add_kid_price, 'FM99,999') KID_PRICE
+			              ,to_char(pe.add_baby_price, 'FM99,999') BABY_PRICE
+			              ,p.sortation
+			 from          rooms ro , (select  no
+			                                  ,room_no
+			                                  ,user_no
+			                                  ,name
+			                                  ,hp
+			                                  ,check_in
+			                                  ,check_out
+			                                  ,adult
+			                                  ,kid
+			                                  ,baby
+			                                  ,total_price
+			                                  ,reg_date
+			                                  ,pay_way
+			                                  ,pay_status
+			                                  ,status
+			                                  ,trans_price
+			                                  ,p_r_no
+			                          from reservations
+			                          where check_in >= #{datepicker}
+			                          and check_in < #{datepicker2}
+			                          or check_in > #{datepicker}
+			                          and check_out <= #{datepicker2}
+			                          or check_in <= #{datepicker} 
+			                          and check_out >= #{datepicker2}) r ,prices p , pension pe, week w, (select   a.img_no,
+			                                                                                                        b.rooms_no,
+			                                                                                                        b.save_name
+			                                                                                              from (select      min(rim.no) img_no,
+			                                                                                                                rim.rooms_no
+			                                                                                                    from        room_image rim
+			                                                                                                    group by    rim.rooms_no) a,
+			                                                                                                   (select      save_name, rooms_no, no img_no
+			                                                                                                    from         room_image) b
+			                                                                                              where a.img_no = b.img_no) ri
+			where   ro.no = r.room_no(+)
+			and     ro.pension_no = #{pensionNo}
+			and     ro.no = p.room_no
+			and     p.no = w.price_no
+			and     ro.no = ri.rooms_no
+			and     pe.no = ro.pension_no
+			and     p.sortation = (select nvl(max(gubun), 3) gubun
+			                        from peck 
+			                        where peck_start < #{datepicker}
+			                        and peck_end >#{datepicker}
+			                        and pension_no = #{pensionNo})
+			and     w.name = TO_CHAR(TO_DATE(#{datepicker},'YYYY-MM-DD'), 'DY')
+			and     r.status(+) != 3
+
+		]]>
+	</select>
+		
+	<!-- 객실 리스트 정보 가져오기 (ajax) -->
+	<select id="roomInfoList" parameterType="map" resultType="map">
+		<![CDATA[
+			select  sAmen.name
+			        ,sAmen.ICON_PATH
+			        ,r.add_info
+			        ,r.no
+			        ,r.room_amenities
+			from    pension p, p_amenities pAmen, s_amenities sAmen, rooms r
+			where   p.no = pAmen.pension_no
+			and     pAmen.s_amenities_no = sAmen.no
+			and     p.no = r.pension_no
+			and     p.no = #{pensionNo}
+			and     r.no = #{roomNo}
+		]]>
+	</select>
+	
+	
+	<!-- 펜션 숙소정보 가져오기 (ajax) -->	
+	<select id="pensionInfo" parameterType="int" resultType="map">
+		<![CDATA[
+			select  visit_road1
+			        ,visit_road2
+			        ,visit_road3
+			        ,area_info1
+			        ,area_info2
+			        ,area_info3
+			        ,rules
+			        ,live_pay
+			        ,parking_info
+			        ,etc
+			        ,check_in
+			        ,check_out
+			        ,to_char(add_adult_price,'99,999') ADD_ADULT_PRICE
+			        ,to_char(add_kid_price,'99,999') ADD_KID_PRICE
+			        ,add_baby_price
+			        ,refund_no
+			from    pension
+			where   no = #{pensionNo}
+		]]>
+	</select>
+	
+	<!-- 객실 정보 가져오기 (ajax) -->
+	<select id="roomImgList" resultType="map" parameterType="map">
+		<![CDATA[
+			select  r.pension_no
+					,rImg.no RIMGNO
+					,rImg.rooms_no
+					,rImg.SAVE_NAME
+			from    rooms r, room_image rImg
+			where   r.no = rImg.rooms_no
+			and     r.pension_no = #{pensionNo}
+			and		rImg.rooms_no = #{roomNo}
+		]]>
+	</select>
+	
+	<!-- 펜션 별 객실 메인사진 보여주기 -->
+	<select id ="pensionRoomImg" parameterType="int" resultType="map">
+		<![CDATA[
+			select  rImg.rooms_no
+			        ,rImg.SAVE_NAME
+			from    rooms r, room_image RIMG
+			where   r.no = rImg.rooms_no
+			and     r.pension_no = #{pensionNo}
+			group by rImg.rooms_no,     rImg.SAVE_NAME
+			order by rImg.rooms_no asc
+		]]>
+	</select>
+	
+	<!-- 리뷰 가져오기(이용자 + 업주) -->
+	<select id="allReview" parameterType="int" resultType="map">
+		<![CDATA[
+			select  re.review_no
+			        ,re.title
+			        ,to_char(re.stars, '0.0') STARS
+			        ,re.image1
+			        ,re.image2
+			        ,re.content
+                    ,p.no
+			        ,CASE    WHEN to_char(sysdate,'yy/mm/dd') = to_char(re.reg_date,'yy/mm/dd') THEN to_char('오늘')
+                             WHEN to_char(sysdate-1,'yy/mm/dd') = to_char(re.reg_date,'yy/mm/dd') THEN to_char('1일 전')
+			                 WHEN to_char(sysdate-2,'yy/mm/dd') = to_char(re.reg_date,'yy/mm/dd') THEN to_char('2일 전')        
+			                 WHEN to_char(sysdate-3,'yy/mm/dd') = to_char(re.reg_date,'yy/mm/dd') THEN to_char('3일 전')        
+			                 WHEN to_char(sysdate-4,'yy/mm/dd') = to_char(re.reg_date,'yy/mm/dd') THEN to_char('4일 전')       
+			                 WHEN to_char(sysdate-5,'yy/mm/dd') = to_char(re.reg_date,'yy/mm/dd') THEN to_char('5일 전')       
+			                 WHEN to_char(sysdate-6,'yy/mm/dd') = to_char(re.reg_date,'yy/mm/dd') THEN to_char('6일 전')       
+			                 WHEN to_char(sysdate-7,'yy/mm/dd') = to_char(re.reg_date,'yy/mm/dd') THEN to_char('7일 전')
+			                 WHEN to_char(sysdate-8,'yy/mm/dd') > to_char(re.reg_date,'yy/mm/dd') and to_char(sysdate-13,'yy/mm/dd') < to_char(re.reg_date,'yy/mm/dd') THEN to_char('1주 전')
+			                 WHEN to_char(sysdate-14,'yy/mm/dd') >= to_char(re.reg_date,'yy/mm/dd') and to_char(sysdate-21,'yy/mm/dd') < to_char(re.reg_date,'yy/mm/dd') THEN to_char('2주 전')
+			                 WHEN to_char(sysdate-21,'yy/mm/dd') >= to_char(re.reg_date,'yy/mm/dd') and to_char(sysdate-28,'yy/mm/dd') < to_char(re.reg_date,'yy/mm/dd') THEN to_char('3주 전')
+			                 WHEN to_char(sysdate-28,'yy/mm/dd') >= to_char(re.reg_date,'yy/mm/dd') and to_char(sysdate-31,'yy/mm/dd') < to_char(re.reg_date,'yy/mm/dd') THEN to_char('4주 전')
+			                 WHEN to_char(sysdate-31,'yy/mm/dd') >= to_char(re.reg_date,'yy/mm/dd') and to_char(sysdate-62,'yy/mm/dd') < to_char(re.reg_date,'yy/mm/dd') THEN to_char('1개월 전')
+			                 WHEN to_char(sysdate-62,'yy/mm/dd') >= to_char(re.reg_date,'yy/mm/dd') and to_char(sysdate-92,'yy/mm/dd') < to_char(re.reg_date,'yy/mm/dd') THEN to_char('2개월 전')
+			                 WHEN to_char(sysdate-92,'yy/mm/dd') >= to_char(re.reg_date,'yy/mm/dd') and to_char(sysdate-123,'yy/mm/dd') < to_char(re.reg_date,'yy/mm/dd') THEN to_char('3개월 전')
+			                 WHEN to_char(sysdate-123,'yy/mm/dd') >= to_char(re.reg_date,'yy/mm/dd') and to_char(sysdate-153,'yy/mm/dd') < to_char(re.reg_date,'yy/mm/dd') THEN to_char('4개월 전')
+			                 WHEN to_char(sysdate-153,'yy/mm/dd') >= to_char(re.reg_date,'yy/mm/dd') and to_char(sysdate-184,'yy/mm/dd') < to_char(re.reg_date,'yy/mm/dd') THEN to_char('5개월 전')
+			                 WHEN to_char(sysdate-184,'yy/mm/dd') >= to_char(re.reg_date,'yy/mm/dd') and to_char(sysdate-214,'yy/mm/dd') < to_char(re.reg_date,'yy/mm/dd') THEN to_char('6개월 전')
+			                 WHEN to_char(sysdate-214,'yy/mm/dd') >= to_char(re.reg_date,'yy/mm/dd') and to_char(sysdate-244,'yy/mm/dd') < to_char(re.reg_date,'yy/mm/dd') THEN to_char('7개월 전')
+			                 WHEN to_char(sysdate-244,'yy/mm/dd') >= to_char(re.reg_date,'yy/mm/dd') and to_char(sysdate-274,'yy/mm/dd') < to_char(re.reg_date,'yy/mm/dd') THEN to_char('8개월 전')
+			                 WHEN to_char(sysdate-274,'yy/mm/dd') >= to_char(re.reg_date,'yy/mm/dd') and to_char(sysdate-304,'yy/mm/dd') < to_char(re.reg_date,'yy/mm/dd') THEN to_char('9개월 전')
+			                 WHEN to_char(sysdate-304,'yy/mm/dd') >= to_char(re.reg_date,'yy/mm/dd') and to_char(sysdate-334,'yy/mm/dd') < to_char(re.reg_date,'yy/mm/dd') THEN to_char('10개월 전')
+			                 WHEN to_char(sysdate-334,'yy/mm/dd') >= to_char(re.reg_date,'yy/mm/dd') and to_char(sysdate-364,'yy/mm/dd') < to_char(re.reg_date,'yy/mm/dd') THEN to_char('11개월 전')
+			                 WHEN to_char(sysdate-364,'yy/mm/dd') >= to_char(re.reg_date,'yy/mm/dd') and to_char(sysdate-730,'yy/mm/dd') < to_char(re.reg_date,'yy/mm/dd') THEN to_char('1년 전')
+			        END reg_date
+                    ,nvl(re2.RCONTENT, 'empty') RCONTENT
+                    ,nvl(re2.RREG_DATE, 'empty') RREG_DATE
+			        ,re2.room_name
+			        ,re2.name
+			from    reviews re, users u, company c, pension p, (select      re.review_no
+                                                                            ,r.room_name
+                                                                            ,res.name
+                                                                            ,rep.content RCONTENT
+                                                                            ,CASE    WHEN to_char(sysdate,'yy/mm/dd') = to_char(rep.reg_date,'yy/mm/dd') THEN to_char('오늘')
+                                                                                     WHEN to_char(sysdate-1,'yy/mm/dd') = to_char(rep.reg_date,'yy/mm/dd') THEN to_char('1일 전')
+                                                                                     WHEN to_char(sysdate-2,'yy/mm/dd') = to_char(rep.reg_date,'yy/mm/dd') THEN to_char('2일 전')        
+                                                                                     WHEN to_char(sysdate-3,'yy/mm/dd') = to_char(rep.reg_date,'yy/mm/dd') THEN to_char('3일 전')        
+                                                                                     WHEN to_char(sysdate-4,'yy/mm/dd') = to_char(rep.reg_date,'yy/mm/dd') THEN to_char('4일 전')       
+                                                                                     WHEN to_char(sysdate-5,'yy/mm/dd') = to_char(rep.reg_date,'yy/mm/dd') THEN to_char('5일 전')       
+                                                                                     WHEN to_char(sysdate-6,'yy/mm/dd') = to_char(rep.reg_date,'yy/mm/dd') THEN to_char('6일 전')       
+                                                                                     WHEN to_char(sysdate-7,'yy/mm/dd') = to_char(rep.reg_date,'yy/mm/dd') THEN to_char('7일 전')
+                                                                                     WHEN to_char(sysdate-8,'yy/mm/dd') > to_char(rep.reg_date,'yy/mm/dd') and to_char(sysdate-13,'yy/mm/dd') < to_char(rep.reg_date,'yy/mm/dd') THEN to_char('1주 전')
+                                                                                     WHEN to_char(sysdate-14,'yy/mm/dd') >= to_char(rep.reg_date,'yy/mm/dd') and to_char(sysdate-21,'yy/mm/dd') < to_char(rep.reg_date,'yy/mm/dd') THEN to_char('2주 전')
+                                                                                     WHEN to_char(sysdate-21,'yy/mm/dd') >= to_char(rep.reg_date,'yy/mm/dd') and to_char(sysdate-28,'yy/mm/dd') < to_char(rep.reg_date,'yy/mm/dd') THEN to_char('3주 전')
+                                                                                     WHEN to_char(sysdate-28,'yy/mm/dd') >= to_char(rep.reg_date,'yy/mm/dd') and to_char(sysdate-31,'yy/mm/dd') < to_char(rep.reg_date,'yy/mm/dd') THEN to_char('4주 전')
+                                                                                     WHEN to_char(sysdate-31,'yy/mm/dd') >= to_char(rep.reg_date,'yy/mm/dd') and to_char(sysdate-62,'yy/mm/dd') < to_char(rep.reg_date,'yy/mm/dd') THEN to_char('1개월 전')
+                                                                                     WHEN to_char(sysdate-62,'yy/mm/dd') >= to_char(rep.reg_date,'yy/mm/dd') and to_char(sysdate-92,'yy/mm/dd') < to_char(rep.reg_date,'yy/mm/dd') THEN to_char('2개월 전')
+                                                                                     WHEN to_char(sysdate-92,'yy/mm/dd') >= to_char(rep.reg_date,'yy/mm/dd') and to_char(sysdate-123,'yy/mm/dd') < to_char(rep.reg_date,'yy/mm/dd') THEN to_char('3개월 전')
+                                                                                     WHEN to_char(sysdate-123,'yy/mm/dd') >= to_char(rep.reg_date,'yy/mm/dd') and to_char(sysdate-153,'yy/mm/dd') < to_char(rep.reg_date,'yy/mm/dd') THEN to_char('4개월 전')
+                                                                                     WHEN to_char(sysdate-153,'yy/mm/dd') >= to_char(rep.reg_date,'yy/mm/dd') and to_char(sysdate-184,'yy/mm/dd') < to_char(rep.reg_date,'yy/mm/dd') THEN to_char('5개월 전')
+                                                                                     WHEN to_char(sysdate-184,'yy/mm/dd') >= to_char(rep.reg_date,'yy/mm/dd') and to_char(sysdate-214,'yy/mm/dd') < to_char(rep.reg_date,'yy/mm/dd') THEN to_char('6개월 전')
+                                                                                     WHEN to_char(sysdate-214,'yy/mm/dd') >= to_char(rep.reg_date,'yy/mm/dd') and to_char(sysdate-244,'yy/mm/dd') < to_char(rep.reg_date,'yy/mm/dd') THEN to_char('7개월 전')
+                                                                                     WHEN to_char(sysdate-244,'yy/mm/dd') >= to_char(rep.reg_date,'yy/mm/dd') and to_char(sysdate-274,'yy/mm/dd') < to_char(rep.reg_date,'yy/mm/dd') THEN to_char('8개월 전')
+                                                                                     WHEN to_char(sysdate-274,'yy/mm/dd') >= to_char(rep.reg_date,'yy/mm/dd') and to_char(sysdate-304,'yy/mm/dd') < to_char(rep.reg_date,'yy/mm/dd') THEN to_char('9개월 전')
+                                                                                     WHEN to_char(sysdate-304,'yy/mm/dd') >= to_char(rep.reg_date,'yy/mm/dd') and to_char(sysdate-334,'yy/mm/dd') < to_char(rep.reg_date,'yy/mm/dd') THEN to_char('10개월 전')
+                                                                                     WHEN to_char(sysdate-334,'yy/mm/dd') >= to_char(rep.reg_date,'yy/mm/dd') and to_char(sysdate-364,'yy/mm/dd') < to_char(rep.reg_date,'yy/mm/dd') THEN to_char('11개월 전')
+                                                                                     WHEN to_char(sysdate-364,'yy/mm/dd') >= to_char(rep.reg_date,'yy/mm/dd') and to_char(sysdate-730,'yy/mm/dd') < to_char(rep.reg_date,'yy/mm/dd') THEN to_char('1년 전')
+                                                                            END RREG_DATE
+                                                                from        rooms r, pension p, reservations res, reviews re, replys rep
+                                                                where       r.pension_no = p.no
+                                                                and         r.no = res.room_no
+                                                                and         res.no = re.no
+                                                                and         re.review_no = rep.review_no(+)
+                                                                and         p.no = #{pensionNo}) re2
+			where   u.no = c.user_no
+			and     c.no = p.company_no
+			and     re.review_no = re2.review_no
+			and     p.no = #{pensionNo}
+			order by review_no asc
+		]]>
+	</select>
+	
+</mapper>

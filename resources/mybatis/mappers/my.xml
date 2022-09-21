@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="my">
+
+	<!-- 유저 번호로 전체 리스트 가져오기 -->
+	<select id="getUserList" resultType="com.javaex.vo.MyListVo"
+		parameterType="int">
+		<![CDATA[
+			select r.user_no no,
+				   r.no resNo,
+				   r.status status,
+                   p.name pName,
+                   to_char(r.check_in, 'yyyy-mm-dd DY') checkIn,
+                   to_char(r.check_out, 'yyyy-mm-dd DY') checkOut,
+                   p.check_in inTime,
+                   p.check_out outTime,
+                   pImg.image_path imgPath,
+                   r.reg_date regDate
+            from reservations r, pension p, rooms ro, pension_image pImg
+			where r.room_no = ro.no
+			and p.no = ro.pension_no
+			and p.no = pImg.pension_no
+			and r.user_no = #{no}
+			order by r.no desc
+		]]>
+	</select>
+
+	<!-- 유저 번호로 예약완료 리스트 가져오기 -->
+	<select id="getReserveList" resultType="com.javaex.vo.MyListVo"
+		parameterType="int">
+		<![CDATA[
+			select  pe.no no
+			        ,pe.resNo resNo 
+			        ,pe.pNo pNo
+			        ,pe.status status
+			        ,pe.pName pName
+			        ,pe.checkIn checkIn
+			        ,pe.checkOut checkOut
+			        ,pe.inTime inTime
+			        ,pe.outTime outTime
+			        ,pe.regDate regDate
+			        ,img.savename saveName
+			from
+			    (select r.user_no no,
+			           r.no resNo,
+			           p.no pNo,
+			           r.status status,
+			           p.name pName,
+			           to_char(r.check_in, 'yyyy-mm-dd DY') checkIn,
+			           to_char(r.check_out, 'yyyy-mm-dd DY') checkOut,
+			           p.check_in inTime,
+			           p.check_out outTime,
+			           r.reg_date regDate
+			    from reservations r, pension p, rooms ro
+			    where r.room_no = ro.no
+			    and p.no = ro.pension_no
+			    and r.user_no = #{no}
+			    and r.status = 1
+			    order by r.no desc) pe,
+			    
+			    (select  pi.no imageNo
+			            ,mPi.pension_no pensionNo
+			            ,pi.save_name saveName
+			    from 
+			        (select  min(no) no
+			                ,pension_no
+			         from pension_image
+			         group by pension_no) mPi,
+			        (select  no
+			                ,pension_no
+			                ,save_name
+			         from pension_image) pi
+			    where mPi.no = pi.no
+			    and mPi.pension_no = pi.pension_no) img
+			
+			where pe.pNo = img.pensionno
+		]]>
+	</select>
+
+	<!-- 유저 번호로 이용완료 리스트 가져오기 -->
+	<select id="getUsedList" resultType="com.javaex.vo.MyListVo"
+		parameterType="int">
+		<![CDATA[
+			select  pe.no no
+			        ,pe.resNo resNo 
+			        ,pe.pNo pNo
+			        ,pe.status status
+			        ,pe.pName pName
+			        ,pe.checkIn checkIn
+			        ,pe.checkOut checkOut
+			        ,pe.inTime inTime
+			        ,pe.outTime outTime
+			        ,pe.regDate regDate
+			        ,img.savename saveName
+			from
+			    (select r.user_no no,
+			           r.no resNo,
+			           p.no pNo,
+			           r.status status,
+			           p.name pName,
+			           to_char(r.check_in, 'yyyy-mm-dd DY') checkIn,
+			           to_char(r.check_out, 'yyyy-mm-dd DY') checkOut,
+			           p.check_in inTime,
+			           p.check_out outTime,
+			           r.reg_date regDate
+			    from reservations r, pension p, rooms ro
+			    where r.room_no = ro.no
+			    and p.no = ro.pension_no
+			    and r.user_no = #{no}
+			    and r.status = 3
+			    order by r.no desc) pe,
+			    
+			    (select  pi.no imageNo
+			            ,mPi.pension_no pensionNo
+			            ,pi.save_name saveName
+			    from 
+			        (select  min(no) no
+			                ,pension_no
+			         from pension_image
+			         group by pension_no) mPi,
+			        (select  no
+			                ,pension_no
+			                ,save_name
+			         from pension_image) pi
+			    where mPi.no = pi.no
+			    and mPi.pension_no = pi.pension_no) img
+			
+			where pe.pNo = img.pensionno
+		]]>
+	</select>
+
+	<!-- 유저 번호로 예약취소 리스트 가져오기 -->
+	<select id="getCancelList" resultType="com.javaex.vo.MyListVo"
+		parameterType="int">
+		<![CDATA[
+			select  pe.no no
+			        ,pe.resNo resNo 
+			        ,pe.pNo pNo
+			        ,pe.status status
+			        ,pe.pName pName
+			        ,pe.checkIn checkIn
+			        ,pe.checkOut checkOut
+			        ,pe.inTime inTime
+			        ,pe.outTime outTime
+			        ,pe.regDate regDate
+			        ,img.savename saveName
+			from
+			    (select r.user_no no,
+			           r.no resNo,
+			           p.no pNo,
+			           r.status status,
+			           p.name pName,
+			           to_char(r.check_in, 'yyyy-mm-dd DY') checkIn,
+			           to_char(r.check_out, 'yyyy-mm-dd DY') checkOut,
+			           p.check_in inTime,
+			           p.check_out outTime,
+			           r.reg_date regDate
+			    from reservations r, pension p, rooms ro
+			    where r.room_no = ro.no
+			    and p.no = ro.pension_no
+			    and r.user_no = #{no}
+			    and r.status = 4
+			    order by r.no desc) pe,
+			    
+			    (select  pi.no imageNo
+			            ,mPi.pension_no pensionNo
+			            ,pi.save_name saveName
+			    from 
+			        (select  min(no) no
+			                ,pension_no
+			         from pension_image
+			         group by pension_no) mPi,
+			        (select  no
+			                ,pension_no
+			                ,save_name
+			         from pension_image) pi
+			    where mPi.no = pi.no
+			    and mPi.pension_no = pi.pension_no) img
+			
+			where pe.pNo = img.pensionno
+		]]>
+	</select>
+
+	<!-- 유저 번호로 양도대기 리스트 가져오기 -->
+	<select id="getRelistList" resultType="com.javaex.vo.MyListVo"
+		parameterType="int">
+		<![CDATA[
+			select  pe.no no
+			        ,pe.resNo resNo 
+			        ,pe.pNo pNo
+			        ,pe.status status
+			        ,pe.pName pName
+			        ,pe.checkIn checkIn
+			        ,pe.checkOut checkOut
+			        ,pe.inTime inTime
+			        ,pe.outTime outTime
+			        ,pe.regDate regDate
+			        ,img.savename saveName
+			from
+			    (select r.user_no no,
+			           r.no resNo,
+			           p.no pNo,
+			           r.status status,
+			           p.name pName,
+			           to_char(r.check_in, 'yyyy-mm-dd DY') checkIn,
+			           to_char(r.check_out, 'yyyy-mm-dd DY') checkOut,
+			           p.check_in inTime,
+			           p.check_out outTime,
+			           r.reg_date regDate
+			    from reservations r, pension p, rooms ro
+			    where r.room_no = ro.no
+			    and p.no = ro.pension_no
+			    and r.user_no = #{no}
+			    and r.status = 6
+			    order by r.no desc) pe ,
+			    
+			    (select  pi.no imageNo
+			            ,mPi.pension_no pensionNo
+			            ,pi.save_name saveName
+			    from 
+			        (select  min(no) no
+			                ,pension_no
+			         from pension_image
+			         group by pension_no) mPi,
+			        (select  no
+			                ,pension_no
+			                ,save_name
+			         from pension_image) pi
+			    where mPi.no = pi.no
+			    and mPi.pension_no = pi.pension_no) img
+			
+			where pe.pNo = img.pensionno
+		]]>
+	</select>
+
+	<!-- 유저 번호로 양도완료 리스트 가져오기 -->
+	<select id="getTransferList" resultType="com.javaex.vo.MyListVo"
+		parameterType="int">
+		<![CDATA[
+			select  pe.no no
+			        ,pe.resNo resNo 
+			        ,pe.pNo pNo
+			        ,pe.status status
+			        ,pe.pName pName
+			        ,pe.checkIn checkIn
+			        ,pe.checkOut checkOut
+			        ,pe.inTime inTime
+			        ,pe.outTime outTime
+			        ,pe.regDate regDate
+			        ,img.savename saveName
+			from
+			    (select r.user_no no,
+			           r.no resNo,
+			           p.no pNo,
+			           r.status status,
+			           p.name pName,
+			           to_char(r.check_in, 'yyyy-mm-dd DY') checkIn,
+			           to_char(r.check_out, 'yyyy-mm-dd DY') checkOut,
+			           p.check_in inTime,
+			           p.check_out outTime,
+			           r.reg_date regDate
+			    from reservations r, pension p, rooms ro
+			    where r.room_no = ro.no
+			    and p.no = ro.pension_no
+			    and r.user_no = #{no}
+			    and r.status = 5
+			    order by r.no desc) pe,
+			    
+			    (select  pi.no imageNo
+			            ,mPi.pension_no pensionNo
+			            ,pi.save_name saveName
+			    from 
+			        (select  min(no) no
+			                ,pension_no
+			         from pension_image
+			         group by pension_no) mPi,
+			        (select  no
+			                ,pension_no
+			                ,save_name
+			         from pension_image) pi
+			    where mPi.no = pi.no
+			    and mPi.pension_no = pi.pension_no) img
+			
+			where pe.pNo = img.pensionno
+		]]>
+	</select>
+
+	<!-- 예약상세 페이지 예약번호로 불러오기 -->
+	<select id="getDetail" resultType="com.javaex.vo.MyListVo"
+		parameterType="int">
+		<![CDATA[
+ 			 select r.status status,
+ 					p.name pName,
+ 					p.no pNo,
+ 					ro.room_name rName,
+ 					to_char(sysdate, 'yyyy-mm-dd') inDate,
+ 					to_char(r.check_in, 'yyyy-mm-dd') checkIn,
+                    to_char(r.check_out, 'yyyy-mm-dd') checkOut,
+ 					p.check_in inTime,
+ 					p.check_out outTime,
+ 					ro.standard_people sPple,
+ 					ro.max_people mPple,
+ 					r.no resNo,
+ 					r.name name,
+ 					regexp_replace(r.hp, '(.{3})(.+)(.{4})', '\1-\2-\3') hp,
+ 					r.total_price totalP,
+ 					r.trans_price transP,
+ 					to_char(r.total_price, 'FM999,999') tPrice,
+ 					to_char(r.trans_price, 'FM999,999') trPrice,
+                    to_char(nvl(p.add_adult_price,0) + nvl(p.add_kid_price,0) + nvl(p.add_baby_price,0), 'FM999,999') as addPrice,
+                    to_char(r.total_price - nvl(p.add_adult_price,0) - nvl(p.add_kid_price,0) - nvl(p.add_baby_price,0), 'FM999,999') as orgPrice,
+                    nvl(p.add_adult_price,0) + nvl(p.add_kid_price,0) + nvl(p.add_baby_price,0) as addP,
+ 					r.pay_status pStatus,
+ 					p.refund_no refNo,
+                    regexp_replace(co.company_hp, '(.{2})(.+)(.{4})', '\1-\2-\3') comHp,
+ 					r.p_r_no pRno
+ 			from reservations r, pension p, rooms ro, company co
+ 			where r.room_no = ro.no
+ 			and p.no = ro.pension_no
+            and co.no = p.company_no
+ 			and r.no = #{resNo}
+		]]>
+	</select>
+
+	<!-- 내정보관리 // 유저 정보 불러오기 -->
+	<select id="getUserInfo" resultType="com.javaex.vo.UserVo"
+		parameterType="int">
+		<![CDATA[
+			select no,
+				   nick_name nickName,
+				   regexp_replace(hp, '(.{3})(.+)(.{4})', '\1-\2-\3') hp,
+				   pw
+			from users
+			where no = #{no}
+		]]>
+	</select>
+
+	<!-- 내정보관리 // 유저 닉네임 업데이트하기 -->
+	<update id="updateNickName" parameterType="com.javaex.vo.UserVo">
+		<![CDATA[
+			update users
+			set nick_name = #{nickName}
+			where no = #{no}
+		]]>
+	</update>
+	<!-- 내정보관리 // 유저 핸드폰번호 업데이트하기 -->
+	<update id="updateHp" parameterType="com.javaex.vo.UserVo">
+		<![CDATA[
+			update users
+			set hp = #{hp}
+			where no = #{no}
+		]]>
+	</update>
+	<!-- 내정보관리 // 유저 비밀번호 업데이트하기 -->
+	<update id="updatePw" parameterType="com.javaex.vo.UserVo">
+		<![CDATA[
+			update users
+			set pw = #{pw}
+			where no = #{no}
+		]]>
+	</update>
+
+	<!-- 예약내역(이용완료/예약취소/양도완료) 삭제 (예약번호->no) -->
+	<delete id="updateRemove" parameterType="int">
+		<![CDATA[
+			update reservations
+			set status = 7
+			where no = #{no}
+		]]>
+	</delete>
+
+	<!-- 예약상태 업데이트 하기 -->
+	<update id="updateCancel" parameterType="map">
+		<![CDATA[
+			update reservations
+			set status = 4
+			where no = #{no}
+		]]>
+	</update>
+
+	<!-- 리뷰 등록하기 -->
+	<insert id="insertReview"
+		parameterType="com.javaex.vo.UserReviewVo">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			select
+			seq_reviews_no.nextval from dual
+		</selectKey>
+		<![CDATA[
+			insert into reviews
+			values(#{no}, #{resNo}, #{title},#{stars},#{image1, jdbcType=VARCHAR}, #{image2, jdbcType=VARCHAR}, #{content}, sysdate)
+		]]>
+	</insert>
+	<!-- 리뷰 수정하기 -->
+	<update id="reviewModify"
+		parameterType="com.javaex.vo.UserReviewVo">
+		<![CDATA[
+			update reviews
+			set title = #{title},
+				stars = #{stars},
+				image1 = #{image1, jdbcType=VARCHAR},
+				image2 = #{image2, jdbcType=VARCHAR},
+				content = #{content},
+				reg_date = sysdate
+			where no = #{resNo}
+		]]>
+	</update>
+
+	<select id="getReview" resultType="com.javaex.vo.UserReviewVo"
+		parameterType="int">
+		<![CDATA[
+			select review_no revNo,
+                    no resNo,
+                    title title,
+                    content content, 
+                    stars stars,
+                    image1 image1,
+                    image2 image2,
+                    reg_date regDate
+                from reviews
+            where no = #{resNo}
+		]]>
+	</select>
+
+	<select id="checkReview" resultType="int" parameterType="int">
+		<![CDATA[
+			select  count(*)
+			from reviews
+			where no = #{resNo}
+		]]>
+	</select>
+
+
+
+</mapper>
